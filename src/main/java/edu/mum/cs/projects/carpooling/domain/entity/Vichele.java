@@ -19,6 +19,7 @@ public class Vichele {
 	String color;
 	int numberOfSeats;
 	
+	@OneToMany(mappedBy="vichele")
 	List<Ride> ride= new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
