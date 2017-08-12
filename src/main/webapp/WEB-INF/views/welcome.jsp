@@ -2,7 +2,6 @@
 
 <div class="container">
 
-
     <!-- Example row of columns -->
     <div class="" >
       
@@ -11,7 +10,7 @@
             <div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4 "
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-			<h1>Fire TimeSheet</h1>
+			<h1>Car-Pooling</h1>
 			<p>This is a template for a simple marketing or informational.</p>
 			<p>
 				<a class="btn btn-primary btn-lg" href="#" role="button">Learn
@@ -22,7 +21,7 @@
 
 		<div class="col-md-offset-1 col-md-4 "
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-			<h2>Track Your Attendance</h2>
+			<h2>Offer A Ride</h2>
 			<p>Donec id elit non mi porta gravida at eget metus.</p>
 			<p>
 				<a class="btn btn-primary btn-default" href="#" role="button">View
@@ -33,7 +32,7 @@
 		<div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
-			<h2>Manage Courses</h2>
+			<h2>Manage Your Rides</h2>
 			<p>Donec id elit non mi porta gravida at eget metus. </p>
 			<p>
 				<a class="btn btn-primary btn-default" href="#" role="button">View
@@ -42,18 +41,15 @@
 		</div>
 		<div class="col-md-offset-1 col-md-4"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
-			<h2>Track Course Sessions</h2>
+			<h2>Subscribe for a ride</h2>
 			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.</p>
 			<p>
 				<a class="btn btn-primary btn-default" href="#" role="button">View
 					details &raquo;</a>
 			</p>
 		</div>
-
 		
-	<!-- </div>
-
-        </div> -->
+	
     </div>
 </div>
 

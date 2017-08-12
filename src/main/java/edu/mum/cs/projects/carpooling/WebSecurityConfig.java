@@ -1,5 +1,6 @@
 package edu.mum.cs.projects.carpooling;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Configuration;
@@ -22,7 +23,8 @@ import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 @EnableJpaRepositories(basePackageClasses = UsersRepository.class)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	
+	@Autowired
+	@Qualifier("customUserDetailsService")
 	UserDetailsService userDetailsService;
 
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -33,7 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 
 		http.authorizeRequests().antMatchers("/welcome")
-				.access("hasRole('FACULTY') or hasRole('STAFF') or hasRole('STUDENT') or hasRole('ADMIN')").and().csrf()
+				.access("hasRole('RIDER') or hasRole('DRIVER')").and().csrf()
 				.disable().formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password")
 				.defaultSuccessUrl("/welcome").and().exceptionHandling().accessDeniedPage("/Access_Denied");
 	}

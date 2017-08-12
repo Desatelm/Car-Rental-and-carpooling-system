@@ -9,18 +9,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * <p>
  * <p>
  * Run reports from here!
- * </p>
- *
- * @author Payman Salek
- * @version 2.0.0
- * @since 1.0.0
+ * 
  */
 
 @SpringBootApplication
-public class AttendanceReport {
+public class carpooling {
 
 	public static void main(String[] args) {
-		SpringApplication.run(AttendanceReport.class, args);
+		SpringApplication.run(carpooling.class, args);
 	}
 
 }

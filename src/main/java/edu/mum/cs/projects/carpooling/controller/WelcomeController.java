@@ -21,20 +21,8 @@ public class WelcomeController {
 		Users user = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String has_Role = user.getRoles().getRole();
 		String lastName = "";
-
-		System.out.println(user.getEmail());
-		System.out.println(user.getFacultyId());
-
-		/*if (has_Role.equals("STUDENT")) {
-			lastName = studentService.getStudentsById(user.getStudentId()).getLastName();
-		} else if ((has_Role.equals("FACULTY"))) {
-			System.out.println(user.getFacultyId());
-			lastName = facultyService.getFacultyById(user.getFacultyId()).getLastName();
-
-		} else {
-			lastName = "Admin";
-		}*/
-
+		
+		
 		session.setAttribute("lastName", lastName);
 		session.setAttribute("username", user.getName());
 
