@@ -18,7 +18,7 @@ public class Vichele {
 	String engineType;
 	String color;
 	int numberOfSeats;
-	
+
 	@OneToMany(mappedBy="vichele")
 	List<Ride> ride= new ArrayList<>();
 	

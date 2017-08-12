@@ -42,10 +42,8 @@ public class User {
 	
 	@Lob
 	@Column(name = "picture")
-	private Boolean[] profilePicture;
+	private Boolean[] profilePicture;	
 	
-	@Embedded
-	private Address address;
 	
 	@Column(name = "password")
 	private String password;
@@ -53,8 +51,11 @@ public class User {
 	@OneToMany(mappedBy="user")
 	private List<Vichele> vicheles = new ArrayList<Vichele>();
 	
-	/*@Embedded
-	private Rating rating;*/
+	@Embedded
+	private Address address;
+	
+	@Embedded
+	private Rating rating;
 	
 	@OneToOne(mappedBy="user")
 	private MessageBox messageBox;
@@ -80,7 +81,7 @@ public class User {
 		this.emailAddress = user.getEmailAddress();
 		this.password = user.getPassword();
 		this.phone = user.getPhone();
-		//this.rating =user.getRating();
+		this.rating =user.getRating();
 		this.ride = user.getRide();
 		this.sex = user.getSex();
 		this.roles = user.getRoles();
@@ -192,13 +193,13 @@ public class User {
 		this.vicheles = vicheles;
 	}
 
-	/*public Rating getRating() {
+	public Rating getRating() {
 		return rating;
 	}
 
 	public void setRating(Rating rating) {
 		this.rating = rating;
-	}*/
+	}
 
 	public MessageBox getMessageBox() {
 		return messageBox;
