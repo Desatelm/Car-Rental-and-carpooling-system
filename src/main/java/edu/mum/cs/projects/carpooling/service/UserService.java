@@ -16,10 +16,8 @@ import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 @Transactional
 public class UserService {
 	@Autowired
-	private UsersRepository usersRepository;
+	private UsersRepository usersRepository;	
 	
-	@Autowired
-	private UserService userService;
 
 	public void createUser(User user) {
 		usersRepository.save(user);

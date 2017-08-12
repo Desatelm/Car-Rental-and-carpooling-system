@@ -6,7 +6,7 @@
 	<div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4 "
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-			<h1>Fire TimeSheet System</h1>
+			<h1>Car-Pooling System</h1>
 			<p>This is a template for a simple marketing or informational
 				website. It includes a large callout called a jumbotron and three
 				supporting pieces of content. Use it as a starting point to create
@@ -20,7 +20,7 @@
 
 		<div class="col-md-offset-1 col-md-4 "
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-			<h2>Track Your Attendance</h2>
+			<h2>Offered A Ride and Get Maney</h2>
 			<p>Donec id elit non mi porta gravida at eget metus. Fusce
 				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
 				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
@@ -34,7 +34,7 @@
 		<div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
-			<h2>Manage Courses</h2>
+			<h2>Search For A Comfortable and Cheap price</h2>
 			<p>Donec id elit non mi porta gravida at eget metus. Fusce
 				dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh,
 				ut fermentum massa justo sit amet risus. Etiam porta sem malesuada
@@ -46,7 +46,7 @@
 		</div>
 		<div class="col-md-offset-1 col-md-4"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
-			<h2>Track Course Sessions</h2>
+			<h2>Explore Interesting Places with low expence</h2>
 			<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in,
 				egestas eget quam. Vestibulum id ligula porta felis euismod semper.
 				Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum
