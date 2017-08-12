@@ -2,11 +2,12 @@ package edu.mum.cs.projects.carpooling.domain.entity;
 
 import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
 
-import org.exolab.castor.types.Date;
+
 
 @Entity
 @Table(name="ride")
@@ -31,10 +32,10 @@ public class Ride {
 	Date departureDate;
 	
 	
-	@Temporal(TemporalType.TIME)
+	/*@Temporal(TemporalType.TIME)
 	@Column(name="departure_time")
 	Time departureTime;
-	
+	*/
 	@ElementCollection
 	List<Double> price= new ArrayList<>();
 	
@@ -44,11 +45,11 @@ public class Ride {
 	@Enumerated
 	RideStatus status;
 	
-	@Temporal(TemporalType.TIME)
+	/*@Temporal(TemporalType.TIME)
 	@Column(name="waiting_time")
-	Time waitingTime;
+	Time waitingTime;*/
 	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	Vichele vichele;
 	
 	@OneToMany(mappedBy="ride")
@@ -59,6 +60,7 @@ public class Ride {
 	List<User> user = new ArrayList<>();
 
 	public Ride() {
+	
 	}
 
 	public int getId() {
@@ -101,13 +103,13 @@ public class Ride {
 		this.departureDate = departureDate;
 	}
 
-	public Time getDepartureTime() {
+	/*public Time getDepartureTime() {
 		return departureTime;
 	}
 
 	public void setDepartureTime(Time departureTime) {
 		this.departureTime = departureTime;
-	}
+	}*/
 
 	public List<Double> getPrice() {
 		return price;
@@ -133,13 +135,13 @@ public class Ride {
 		this.status = status;
 	}
 
-	public Time getWaitingTime() {
+	/*public Time getWaitingTime() {
 		return waitingTime;
 	}
 
 	public void setWaitingTime(Time waitingTime) {
 		this.waitingTime = waitingTime;
-	}
+	}*/
 
 	public Vichele getVichele() {
 		return vichele;
@@ -164,6 +166,5 @@ public class Ride {
 	public void setUser(List<User> user) {
 		this.user = user;
 	}
-
 
 }

@@ -21,12 +21,7 @@ public class WelcomeController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String has_Role = user.getRoles().getRole();
 		String lastName = "";
-<<<<<<< HEAD
 
-=======
-		
-		
->>>>>>> 61d8a35c533abee95e42738cb07be4dbbac48a31
 		session.setAttribute("lastName", lastName);
 		session.setAttribute("username", user.getName());
 

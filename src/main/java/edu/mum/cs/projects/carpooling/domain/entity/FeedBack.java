@@ -5,6 +5,8 @@ import java.time.LocalTime;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "feedback")
 public class FeedBack {
 
 	@Id
@@ -19,6 +21,7 @@ public class FeedBack {
 	String comment;
 	@OneToOne()
 	User user;
-	@ManyToOne()
+	
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	Ride ride;
 }

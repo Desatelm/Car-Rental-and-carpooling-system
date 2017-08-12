@@ -5,8 +5,12 @@ import java.util.List;
 
 import javax.persistence.*;
 
+@Entity
+@Table(name = "vichele")
 public class Vichele {
 	
+	@Id
+	@GeneratedValue
 	int id;
 	String model;
 	String type;
