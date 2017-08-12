@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import edu.mum.cs.projects.carpooling.domain.entity.CustomUserDetails;
 import edu.mum.cs.projects.carpooling.domain.entity.Role;
-import edu.mum.cs.projects.carpooling.domain.entity.Users;
+import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 
 @Service
@@ -21,24 +21,24 @@ public class UserService {
 	@Autowired
 	private UserService userService;
 
-	public void createUser(Users user) {
+	public void createUser(User user) {
 		usersRepository.save(user);
 	}
 
-	public Users getUserByID(int userId) {
+	public User getUserByID(int userId) {
 		return usersRepository.findById(userId);
 	}
 
-	public Users getUserByUserName(String username) throws UsernameNotFoundException {
-		Optional<Users> optionalUsers = usersRepository.findByName(username);
+	public User getUserByUserName(String username) throws UsernameNotFoundException {
+		Optional<User> optionalUsers = usersRepository.findByName(username);
 		if (!optionalUsers.isPresent()) {
 			return null;
 		}
-		return optionalUsers.map(Users::new).get();
+		return optionalUsers.map(User::new).get();
 	}
 
-	public Users getUser(String username) throws UsernameNotFoundException {
-		Optional<Users> optionalUsers = usersRepository.findByName(username);
+	public User getUser(String username) throws UsernameNotFoundException {
+		Optional<User> optionalUsers = usersRepository.findByName(username);
 
 		optionalUsers.orElseThrow(() -> new UsernameNotFoundException("Username not found"));
 		return optionalUsers.map(CustomUserDetails::new).get();
