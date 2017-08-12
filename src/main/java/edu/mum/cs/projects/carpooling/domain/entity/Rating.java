@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Embeddable
 public class Rating {
-		
+	
 	@Column(name = "value")
 	int value;
 	@Column(name = "counter")
