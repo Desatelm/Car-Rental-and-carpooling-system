@@ -18,8 +18,7 @@ public class Vichele {
 	String engineType;
 	String color;
 	int numberOfSeats;
-	
-	@OneToMany(mappedBy = "vichele")
+	@OneToMany(mappedBy="vichele")
 	List<Ride> ride= new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
