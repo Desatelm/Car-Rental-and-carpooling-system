@@ -5,14 +5,12 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import edu.mum.cs.projects.carpooling.domain.entity.Users;
+import edu.mum.cs.projects.carpooling.domain.entity.User;
 
 @Repository
-public interface UsersRepository extends JpaRepository<Users, Integer> {
-	Optional<Users> findByName(String username);
+public interface UsersRepository extends JpaRepository<User, Integer> {
+	Optional<User> findByName(String username);
 
-	Users findByStudentId(String studentId);
-
-	Users findById(int userId);
+	User findById(int userId);
 
 }

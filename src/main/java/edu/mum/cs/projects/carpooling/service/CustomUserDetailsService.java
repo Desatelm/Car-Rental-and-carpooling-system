@@ -9,7 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import edu.mum.cs.projects.carpooling.domain.entity.CustomUserDetails;
-import edu.mum.cs.projects.carpooling.domain.entity.Users;
+import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 
 
@@ -21,7 +21,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Optional<Users> optionalUsers = usersRepository.findByName(username);
+		Optional<User> optionalUsers = usersRepository.findByName(username);
 
 		optionalUsers.orElseThrow(() -> new UsernameNotFoundException("Username not found"));
 		return optionalUsers.map(CustomUserDetails::new).get();

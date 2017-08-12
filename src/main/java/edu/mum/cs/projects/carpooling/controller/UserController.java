@@ -23,7 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 
 import edu.mum.cs.projects.carpooling.domain.entity.Role;
-import edu.mum.cs.projects.carpooling.domain.entity.Users;
+import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.repository.RoleRepository;
 import edu.mum.cs.projects.carpooling.service.UserService;
 
