@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:edu.mum.cs.projects.carpooling.carpoolingig>
+		<config>java:edu.mum.cs.projects.carpooling.Carpooling</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

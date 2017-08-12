@@ -13,10 +13,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-public class carpooling {
+public class Carpooling {
 
 	public static void main(String[] args) {
-		SpringApplication.run(carpooling.class, args);
+		SpringApplication.run(Carpooling.class, args);
 	}
 
 }
