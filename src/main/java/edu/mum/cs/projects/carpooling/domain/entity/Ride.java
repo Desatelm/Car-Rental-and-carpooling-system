@@ -45,20 +45,17 @@ public class Ride {
 	String waitingTime;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	Vichele vichele;
-
-	@OneToMany(mappedBy = "ride")
+	Vehicle vehicle;
+	
+	@OneToMany(mappedBy="ride")
 	List<FeedBack> feedbacks = new ArrayList<>();
 
 	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_ride", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ride_id"))
 	List<User> user = new ArrayList<>();
 
-	@Transient
-	LinkedHashMap<String, String> viechele;
-
 	public Ride() {
-		viechele = new LinkedHashMap<>();
+		
 	}
 
 	public Ride(Ride ride) {
@@ -152,12 +149,12 @@ public class Ride {
 		this.waitingTime = waitingTime;
 	}
 
-	public Vichele getVichele() {
-		return vichele;
+	public Vehicle getVehicle() {
+		return vehicle;
 	}
 
-	public void setVichele(Vichele vichele) {
-		this.vichele = vichele;
+	public void setVehicle(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public List<FeedBack> getFeedbacks() {

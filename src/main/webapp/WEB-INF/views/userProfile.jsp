@@ -1,6 +1,9 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@include file="/WEB-INF/views/template/secureheader.jsp"%>
 
+<%@include file="/WEB-INF/views/template/secureheader.jsp"%>
+
+<title>sign up</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -11,55 +14,57 @@
 <!-- Latest compiled JavaScript -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 </head>
 <body>
-
-<div class="container">
-
-<div class="col-md-offset-1 col-lg-6"
-			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-	<fieldset class="col-md-6" style="color: white;" >
-		<legend>
-			<span class="text-info" style="color: white;">${user.roles.role}</span> <span
-				class="text-primary" style="color: white;">User </span>
-		</legend>
-		<div class="panel panel-default" style="color: white;">
-			<div class="panel-body">
-				<table class="table table-striped table table-condensed">
-					
-					<tr>
-						<td>UserId: ${user.id}</td>
-					</tr>
-					<tr>
-						<td>User Name: ${user.name}</td>
-					</tr>
-
-					<tr>
-						<td>Role: ${user.roles.role}</td>
-					</tr>
-					<c:if test="${user.roles.role == 'STUDENT'}">
-					<tr>
-						<td><a href="../../user/editStudent/${user.studentId}/${user.name}">Details:</a>
-						</td>
-					</tr>					
-					</c:if>
-					<c:if test="${user.roles.role == 'FACULTY'}">
-					<tr>
-						<td>
-						<a href="../../user/editFaculty//${user.facultyId}/${user.name}"> edit</a> 
-						</td>
-					</tr>
-					</c:if>
-
-				</table>
-			</div>
-		</div>
-	</fieldset>
-	<div class="clearfix"></div>	
-	<a style="color: white;"href="/student/find"> Home</a>
+ 
+    <div class='container'>
+    <h3>Customer Registration:</h3>
+    <div class='container well col-md-8'>
+			
+		    <div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">User Name:  ${user.name} </label>                         
+            </div>
+            
+            <div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">First name: ${user.firstName}</label>           
+	        </div>
+	        
+	        <div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">Last name:${user.lastName}</label>            
+	        </div>
+	        
+		    <div class="form-group col-lg-6">  
+		    <label class="col-lg-3 control-label">Email Address:${user.emailAddress}</label>
+            </div>
+            
+            <div class="form-group col-lg-6">  
+		    <label class="col-lg-3 control-label">CustomerType:${user.roles.role}</label>          
+            </div> 
+            
+            <div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">Phone:${user.phone}</label>            
+	        </div>
+	        
+			<div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">City:${user.address.city}</label>            
+	        </div>
+			
+			<div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">State:${user.address.state}</label>            
+	        </div>
+			
+			<div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">Country:${user.address.country}</label>
+            </div>
+	        
+			<div class="form-group col-lg-6">
+            <label class="col-lg-3 control-label">Zip Code:${user.address.zipcode}</label>
+            </div>
 	</div>
-</div>
+	</div>
+   
 
-</body>
+
 
 <%@include file="/WEB-INF/views/template/footer.jsp"%>

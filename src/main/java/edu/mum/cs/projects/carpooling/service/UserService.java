@@ -18,9 +18,9 @@ public class UserService {
 	@Autowired
 	private UsersRepository usersRepository;	
 	
-
+	@Transactional
 	public void createUser(User user) {
-		usersRepository.save(user);
+		usersRepository.save(user);		
 	}
 
 	public User getUserByID(int userId) {
@@ -43,8 +43,8 @@ public class UserService {
 	}
 
 	@Transactional
-	public void creatUsers() {
-		
+	public void deleteUser(User user) {
+		usersRepository.delete(user);
 	}
 		
 }

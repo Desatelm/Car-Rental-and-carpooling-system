@@ -14,7 +14,7 @@ public class Role {
 	private int roleId;
 
 	@Column(name = "role")
-	private String role;
+	private String roleType;
 
 	public Role() {
 	}
@@ -28,11 +28,11 @@ public class Role {
 	}
 
 	public String getRole() {
-		return role;
+		return roleType;
 	}
 
 	public void setRole(String role) {
-		this.role = role;
+		this.roleType = role;
 	}
 
 }

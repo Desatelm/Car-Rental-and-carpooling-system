@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>TeamFire TimeSheet Web Application</title>
+    <title>Car Pooling Web Application</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet">
@@ -35,8 +35,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Fire-TimeSheet</a>
+            <a class="navbar-brand" href="#">Car-pooling</a>
         </div>
+<<<<<<< HEAD
 
         <ul class="nav navbar-nav">
             <sec:authorize access="hasRole('ROLE_DRIVER')">
@@ -52,6 +53,26 @@
             </li>
             </sec:authorize>
             <sec:authorize access="hasRole('ROLE_RIDER')">
+=======
+       <ul class="nav navbar-nav">
+            <sec:authorize access="hasRole('ROLE_RIDER')">
+            <li>
+                <form action="../getProfile" method="post" class="form-horizontal">
+                 <div class="form-group " class="col-xs-4" style=" margin-top: 25px; margin-left: 25px">    
+					<input type="search" class="form-control input-sm" id="id" name="username" 
+					placeholder="search user ">
+					<span style=" margin-top: 25px; margin-left: 25px"
+					 class="glyphicon glyphicon-search form-control-feedback"></span>	
+										
+				</div>
+                </form>
+            </li>
+            </sec:authorize>
+            </ul>
+        <ul class="nav navbar-nav">
+            
+            <sec:authorize access="hasRole('ROLE_DRIVER')">
+>>>>>>> 2f5d2718c199e21da9ba8bbd0f14ae575cade824
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
                 <ul class="dropdown-menu">
@@ -95,7 +116,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <form action="/login" class="navbar-form navbar-right">
                 <sec:authorize access="isAuthenticated()">
-                   <a class="navbar-brand" href="../user/get/${username}"> <span class="glyphicon glyphicon-user"> ${lastName} </span></a>
+                    <span class="glyphicon glyphicon-user"> ${username} </span>
                 </sec:authorize>
 
                 <button type="submit" class="btn btn-success">Sign Out</button>
