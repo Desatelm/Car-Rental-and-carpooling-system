@@ -6,8 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "vichele")
-public class Vichele {
+@Table(name = "vehicle")
+public class Vehicle {
 	
 	@Id
 	@GeneratedValue
@@ -18,7 +18,8 @@ public class Vichele {
 	String engineType;
 	String color;
 	int numberOfSeats;
-	@OneToMany(mappedBy="vichele")
+	
+	@OneToMany(mappedBy="vehicle")
 	List<Ride> ride= new ArrayList<>();
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)

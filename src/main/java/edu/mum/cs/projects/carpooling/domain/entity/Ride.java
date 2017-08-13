@@ -50,7 +50,7 @@ public class Ride {
 	Time waitingTime;*/
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	Vichele vichele;
+	Vehicle vehicle;
 	
 	@OneToMany(mappedBy="ride")
 	List<FeedBack> feedbacks = new ArrayList<>();
@@ -143,12 +143,12 @@ public class Ride {
 		this.waitingTime = waitingTime;
 	}*/
 
-	public Vichele getVichele() {
-		return vichele;
+	public Vehicle getVichele() {
+		return vehicle;
 	}
 
-	public void setVichele(Vichele vichele) {
-		this.vichele = vichele;
+	public void setVichele(Vehicle vehicle) {
+		this.vehicle = vehicle;
 	}
 
 	public List<FeedBack> getFeedbacks() {
