@@ -56,10 +56,10 @@
             
             <sec:authorize access="hasRole('ROLE_DRIVER')">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DRIVER <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/faculty/courseList">Course List</a></li>
+                    <li><a href="../car_registrationForm">AddCar</a></li>
                     <li role="separator" class="divider"></li>
                     
                     

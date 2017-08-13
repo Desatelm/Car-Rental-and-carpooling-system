@@ -32,12 +32,29 @@
 		<div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
-			<h2>Manage Your Rides</h2>
-			<p>Donec id elit non mi porta gravida at eget metus. </p>
-			<p>
-				<a class="btn btn-primary btn-default" href="#" role="button">View
-					details &raquo;</a>
-			</p>
+			<h2>List Of cars</h2>
+			<table
+				class="table table-striped, table table-hover table table-condensed table-bordered">
+				<tr>
+
+					<th>Vehicle Id</th>
+					<th>Make</th>
+					<th>Model</th>
+					<th>No. of Seats</th>
+					<th>Ride</th>
+
+				</tr>
+				<c:forEach var="vehicle" items="${vehicle}">
+
+					<tr>
+						<td>${vehicle.id}</td>						
+						<td>${vehicle.make}</td>
+						<td>${vehicle.model}</td>
+						<td>${vehicle.numberOfSeats}</td>						
+						<td><a href="ride/${ride.id}">rides</a></td>
+						
+				</c:forEach>
+			</table>
 		</div>
 		<div class="col-md-offset-1 col-md-4"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
