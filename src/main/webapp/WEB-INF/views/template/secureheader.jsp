@@ -37,23 +37,7 @@
             </button>
             <a class="navbar-brand" href="#">Car-pooling</a>
         </div>
-<<<<<<< HEAD
 
-        <ul class="nav navbar-nav">
-            <sec:authorize access="hasRole('ROLE_DRIVER')">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"></a></li>
-                    <li><a href="/ride/registerform">Post Ride</a></li>
-           
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">My Profile</a></li>
-                </ul>
-            </li>
-            </sec:authorize>
-            <sec:authorize access="hasRole('ROLE_RIDER')">
-=======
        <ul class="nav navbar-nav">
             <sec:authorize access="hasRole('ROLE_RIDER')">
             <li>
@@ -72,13 +56,13 @@
         <ul class="nav navbar-nav">
             
             <sec:authorize access="hasRole('ROLE_DRIVER')">
->>>>>>> 2f5d2718c199e21da9ba8bbd0f14ae575cade824
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DRIVER <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/faculty/courseList">Course List</a></li>
+                    <li><a href="../car_registrationForm">AddCar</a></li>
                     <li role="separator" class="divider"></li>
+                    <li><a href="/ride/registerform">Post Ride</a></li>
                     
                     
                 </ul>

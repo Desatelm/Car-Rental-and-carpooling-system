@@ -1,6 +1,9 @@
 package edu.mum.cs.projects.carpooling.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +14,8 @@ import edu.mum.cs.projects.carpooling.domain.entity.User;
 
 import edu.mum.cs.projects.carpooling.service.UserService;
 
+@Controller
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class MessageController  {
 	@Autowired
 	UserService userService;	

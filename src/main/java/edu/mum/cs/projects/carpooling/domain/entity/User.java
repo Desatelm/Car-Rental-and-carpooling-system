@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;;
+import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;;
 
 
 @Entity
@@ -50,7 +53,8 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
 	@Embedded

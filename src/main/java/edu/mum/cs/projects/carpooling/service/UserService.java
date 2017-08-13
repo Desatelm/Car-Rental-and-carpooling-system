@@ -34,7 +34,12 @@ public class UserService {
 		}
 		return optionalUsers.map(User::new).get();
 	}
-
+	
+	public User getUserByemail(String email)  {
+		
+		return usersRepository.findByEmailAddress(email);
+	}
+	
 	public User getUser(String username) throws UsernameNotFoundException {
 		Optional<User> optionalUsers = usersRepository.findByName(username);
 

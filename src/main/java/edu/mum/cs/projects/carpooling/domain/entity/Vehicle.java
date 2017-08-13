@@ -12,10 +12,10 @@ public class Vehicle {
 	@Id
 	@GeneratedValue
 	int id;
+	
 	String model;
 	String type;
-	String company;
-	String engineType;
+	String Make;	
 	String color;
 	int numberOfSeats;
 	
@@ -24,6 +24,25 @@ public class Vehicle {
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	User user;
+
+	
+	public Vehicle() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Vehicle(int id, String model, String type, String make, String color, int numberOfSeats, List<Ride> ride,
+			User user) {
+		super();
+		this.id = id;
+		this.model = model;
+		this.type = type;
+		Make = make;
+		this.color = color;
+		this.numberOfSeats = numberOfSeats;
+		this.ride = ride;
+		this.user = user;
+	}
 
 	public int getId() {
 		return id;
@@ -49,20 +68,13 @@ public class Vehicle {
 		this.type = type;
 	}
 
-	public String getCompany() {
-		return company;
+
+	public String getMake() {
+		return Make;
 	}
 
-	public void setCompany(String company) {
-		this.company = company;
-	}
-
-	public String getEngineType() {
-		return engineType;
-	}
-
-	public void setEngineType(String engineType) {
-		this.engineType = engineType;
+	public void setMake(String make) {
+		Make = make;
 	}
 
 	public String getColor() {
@@ -96,6 +108,5 @@ public class Vehicle {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 	
 }
