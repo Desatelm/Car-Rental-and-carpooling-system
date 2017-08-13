@@ -19,11 +19,9 @@ public class WelcomeController {
 	public String dashboard(Model model, HttpSession session) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		String has_Role = user.getRoles().getRole();
-		String lastName = "";
-
-		session.setAttribute("lastName", lastName);
-		session.setAttribute("username", user.getName());
+				
+		session.setAttribute("email", user.getId());
+		session.setAttribute("username", user.getLastName());
 
 		return "welcome";
 	}

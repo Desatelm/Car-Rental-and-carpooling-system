@@ -1,7 +1,5 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -22,6 +20,8 @@
     <link href="<c:url value="/static/css/jumbotron.css"/>"  rel="stylesheet">
     <link href="<c:url value="/static/css/panels.css"/>"  rel="stylesheet">
     <script src="<c:url value="/static/js/user.js"/>"></script>
+    <%-- <script src="<c:url value="/static/js/locationMap.js"/>"></script> --%>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI42L7mYrE1udMiU98gNXDX8Qv=3.exp&sensor=false&libraries=places"></script>
 </head>
 
 <body style="background-image: url(/static/welcome.jpg);  height: 60vh; background-attachment: fixed; background-size: 100vw 100vh;background-repeat: no-repeat;margin-bottom:40px;">
@@ -39,18 +39,19 @@
         </div>
 
         <ul class="nav navbar-nav">
-            <sec:authorize access="hasRole('ROLE_STUDENT')">
+            <sec:authorize access="hasRole('ROLE_DRIVER')">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/student/Courselist">My CourseList</a></li>
+                    <li><a href="/ride/registerform">Post Ride</a></li>
+           
                     <li role="separator" class="divider"></li>
                     <li><a href="#">My Profile</a></li>
                 </ul>
             </li>
             </sec:authorize>
-            <sec:authorize access="hasRole('ROLE_FACULTY')">
+            <sec:authorize access="hasRole('ROLE_RIDER')">
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
                 <ul class="dropdown-menu">
