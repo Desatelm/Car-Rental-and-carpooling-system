@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
+import edu.mum.cs.projects.carpooling.domain.entity.User;
 
 @Repository
 public interface RideRepository extends JpaRepository<Ride, Integer> {
@@ -21,6 +22,5 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
 	Ride findByDestination(String destination);
 
 	Ride findByDepartureDate(Date date);
-	
 	
 }

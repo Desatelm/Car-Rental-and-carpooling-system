@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
+import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.repository.RideRepository;
 
 @Service

@@ -32,8 +32,8 @@ public class Ride {
 	@Column(name = "departure_time")
 	String departureTime;
 
-	@ElementCollection
-	List<Double> price = new ArrayList<>();
+	@Column(name = "price")
+	double price;
 
 	@Column(name = "seat_no")
 	int noSeat;
@@ -50,7 +50,7 @@ public class Ride {
 	@OneToMany(mappedBy="ride")
 	List<FeedBack> feedbacks = new ArrayList<>();
 
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_ride", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ride_id"))
 	List<User> user = new ArrayList<>();
 
@@ -117,11 +117,11 @@ public class Ride {
 		this.departureTime = departureTime;
 	}
 
-	public List<Double> getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(List<Double> price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
