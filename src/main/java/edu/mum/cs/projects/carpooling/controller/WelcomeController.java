@@ -25,8 +25,7 @@ public class WelcomeController {
 		session.setAttribute("username", user.getLastName());
 		session.setAttribute("email", user.getEmailAddress());
 		session.setAttribute("vehicle", user.getVicheles());
-		System.err.println(user.getVicheles().size());
-  
+		  
 		return "welcome";
 	}
 }

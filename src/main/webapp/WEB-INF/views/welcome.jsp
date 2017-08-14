@@ -42,6 +42,7 @@
 					<th>Model</th>
 					<th>No. of Seats</th>
 					<th>Ride</th>
+					<th>Action</th>
 
 				</tr>
 				<c:forEach var="vehicle" items="${vehicle}">
@@ -51,7 +52,12 @@
 						<td>${vehicle.make}</td>
 						<td>${vehicle.model}</td>
 						<td>${vehicle.numberOfSeats}</td>						
-						<td><a href="ride/${ride.id}">rides</a></td>
+						<td><a href="ride/${ride.id}">rides</a></td>						
+						
+								<td><form action="/deleteVehicle/${vehicle.id}" method="post">
+										<input class="form-control" name = "email" type="hidden" value = ${email}>
+										<input type="submit" value="delete">
+									</form></td>
 						
 				</c:forEach>
 			</table>

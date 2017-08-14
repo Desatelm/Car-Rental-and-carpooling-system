@@ -1,6 +1,6 @@
 <%@include file="/WEB-INF/views/template/secureheader.jsp"%>
 
-<title>sign up</title>
+<title>Car Registration</title>
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
@@ -44,7 +44,7 @@
 	        </div>
 	        
 		    <div class="form-group">  
-		    <label class="col-lg-3 control-label">numberOfSeats:</label>          
+		    <label class="col-lg-3 control-label">Number Of Seats:</label>          
             <div class="col-lg-6">
               <input class="form-control" type="text" name="numberOfSeats">
             </div>
@@ -64,9 +64,7 @@
             </div>
 	</form>
            
-            
-	</form>
-	</div>
+  	</div>
 </div>
 
 
