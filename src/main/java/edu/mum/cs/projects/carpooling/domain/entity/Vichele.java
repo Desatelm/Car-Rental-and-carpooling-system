@@ -13,6 +13,14 @@ public class Vichele {
 	@GeneratedValue
 	int id;
 	String model;
+	public String getModel() {
+		return model;
+	}
+
+	public void setModel(String model) {
+		this.model = model;
+	}
+
 	String type;
 	String company;
 	String engineType;
