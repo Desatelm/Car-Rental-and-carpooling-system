@@ -27,6 +27,7 @@ public class WelcomeController {
 		session.setAttribute("vehicle", user.getVicheles());
 		session.setAttribute("myRidePost", user.getRide());
 		
+
 		return "welcome";
 	}
 }

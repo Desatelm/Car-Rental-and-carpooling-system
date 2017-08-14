@@ -2,7 +2,6 @@ package edu.mum.cs.projects.carpooling.domain.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.persistence.*;
@@ -44,7 +43,7 @@ public class Ride {
 	@Column(name = "waiting_time")
 	String waitingTime;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	Vehicle vehicle;
 	
 	@OneToMany(mappedBy="ride")
@@ -64,7 +63,7 @@ public class Ride {
 		ride.departureDate = ride.getDepartureDate();
 		ride.departureTime = ride.getDepartureTime();
 		ride.noSeat = ride.getNoSeat();
-		ride.status = RideStatus.ONGOING;
+		ride.status = ride.getStatus();
 		ride.price = ride.getPrice();
 		ride.waitingTime = ride.getWaitingTime();
 	}
@@ -169,8 +168,8 @@ public class Ride {
 		return user;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUser(User user) {
+		this.user.add(user);
 	}
 
 }

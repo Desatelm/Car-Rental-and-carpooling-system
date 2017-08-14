@@ -2,9 +2,8 @@ package edu.mum.cs.projects.carpooling.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,10 +17,11 @@ import edu.mum.cs.projects.carpooling.domain.entity.Role;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.domain.entity.Vehicle;
 import edu.mum.cs.projects.carpooling.repository.RoleRepository;
+import edu.mum.cs.projects.carpooling.service.NotificationService;
 import edu.mum.cs.projects.carpooling.service.UserService;
 
 @Controller
-@Transactional(propagation = Propagation.REQUIRES_NEW)
+@Transactional
 
 public class UserController {
 	@Autowired
@@ -29,6 +29,9 @@ public class UserController {
 	
 	@Autowired	
 	RoleRepository roleRepository;
+	
+	@Autowired
+	NotificationService notificationService;
 	
 	@GetMapping(value = "/signup_page")
 	public String adduser(Model model) {
@@ -39,12 +42,17 @@ public class UserController {
 	public String createUser(User user, Address address, @RequestParam String role) {
 		
 		Role role1 = roleRepository.findByRoleType(role);		
-		
+				
 		user.setActive(1);
 		user.setAddress(address);
 		user.setRoles(role1);
 		userService.createUser(user);
-		
+		try{
+		notificationService.sendNotification(user);
+		}
+		catch(MailException e){
+			System.err.println(e.getMessage());
+		}
 		return "redirect:/welcome";
 	}
 	

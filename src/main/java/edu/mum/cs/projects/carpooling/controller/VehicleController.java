@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -15,7 +16,7 @@ import edu.mum.cs.projects.carpooling.service.UserService;
 import edu.mum.cs.projects.carpooling.service.VehicleService;
 
 @Controller
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional
 public class VehicleController {
 	
 	@Autowired
@@ -31,10 +32,19 @@ public class VehicleController {
 	
 	@PostMapping(value = "/addVehicle")
 	public String addVehicle(Vehicle vehicle, @RequestParam String email) {
-		
+		System.err.println("#######################################################"+email);
 		User user = userService.getUserByemail(email);		
 		vehicle.setUser(user);
 		vehicleService.creatVehicle(vehicle);		
+		return "redirect:/welcome";
+	}
+	
+	@PostMapping(value = "/deleteVehicle/{id}")
+	public String deleteVehicle(@PathVariable int id, @RequestParam String email) {
+		Vehicle vehicle = vehicleService.getVehicle(id);
+		User user = userService.getUserByemail(email);		
+		user.getVicheles().remove(vehicle);
+		vehicleService.removeVehicle(vehicle);		
 		return "redirect:/welcome";
 	}
 
