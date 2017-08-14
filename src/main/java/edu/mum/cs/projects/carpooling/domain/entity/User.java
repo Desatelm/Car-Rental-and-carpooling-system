@@ -66,7 +66,8 @@ public class User {
 	@OneToMany(cascade=CascadeType.ALL)
 	private List<MessageBox> messageBox;
 	
-	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany
 	private List<Ride> ride = new ArrayList<>();
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

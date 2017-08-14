@@ -16,16 +16,21 @@ import edu.mum.cs.projects.carpooling.domain.entity.User;
 
 public class WelcomeController {
 	
-
+	
+	
 	@RequestMapping("/welcome")
 	public String dashboard(Model model, HttpSession session) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
 		session.setAttribute("username", user.getLastName());
 		session.setAttribute("email", user.getEmailAddress());
 		session.setAttribute("vehicle", user.getVicheles());
+<<<<<<< HEAD
 		  
+=======
+		session.setAttribute("myRidePost", user.getRide());
+		
+>>>>>>> f30ef8ee9f489e80ed1a64cd5bbc6d3822742b48
 		return "welcome";
 	}
 }

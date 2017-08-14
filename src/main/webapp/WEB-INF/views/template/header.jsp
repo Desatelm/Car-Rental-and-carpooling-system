@@ -19,6 +19,7 @@
     <link href="<c:url value="/static/css/jumbotron.css"/>"  rel="stylesheet">    
     <link href="<c:url value="/static/css/panels.css"/>"  rel="stylesheet">
     <link href="<c:url value="/static/css/profile.css"/>"  rel="stylesheet">
+    
 
 </head>
 
