@@ -7,5 +7,5 @@ import edu.mum.cs.projects.carpooling.domain.entity.Role;
 
 @Repository
 public interface RoleRepository extends CrudRepository<Role, Integer> {
-	Role findByRole(String role);
+	Role findByRoleType(String role);
 }

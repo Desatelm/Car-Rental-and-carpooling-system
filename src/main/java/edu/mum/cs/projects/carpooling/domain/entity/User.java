@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.*;;
+import javax.persistence.*;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;;
 
 
 @Entity
@@ -38,7 +41,7 @@ public class User {
 	
 	@Column(name = "date_of_birth")
 	@Temporal(TemporalType.DATE)
-	private Date DOB;
+	private Date dateOfBirth;
 	
 	@Lob
 	@Column(name = "picture")
@@ -50,8 +53,9 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@OneToMany(mappedBy="user")
-	private List<Vichele> vicheles = new ArrayList<Vichele>();
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(mappedBy="user", cascade = CascadeType.ALL)
+	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
 
 	@Embedded
 	private Address address;
@@ -77,7 +81,7 @@ public class User {
 	public User (User user){
 		this.active = user.getActive();
 		this.address = user.getAddress();
-		this.DOB = user.getDOB();
+		this.dateOfBirth = user.getDOB();
 		this.firstName = user.getFirstName();
 		this.lastName = user.getLastName();
 		this.messageBox = user.getMessageBox();
@@ -88,7 +92,7 @@ public class User {
 		this.ride = user.getRide();
 		this.sex = user.getSex();
 		this.roles = user.getRoles();
-		this.vicheles = user.getVicheles();		
+		this.vehicles = user.getVicheles();		
 		
 	}
 
@@ -161,11 +165,11 @@ public class User {
 	}
 
 	public Date getDOB() {
-		return DOB;
+		return dateOfBirth;
 	}
 
 	public void setDOB(Date dOB) {
-		DOB = dOB;
+		dateOfBirth = dOB;
 	}
 
 	public Boolean[] getProfilePicture() {
@@ -192,12 +196,12 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Vichele> getVicheles() {
-		return vicheles;
+	public List<Vehicle> getVicheles() {
+		return vehicles;
 	}
 
-	public void setVicheles(List<Vichele> vicheles) {
-		this.vicheles = vicheles;
+	public void setVicheles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
 	}
 
 

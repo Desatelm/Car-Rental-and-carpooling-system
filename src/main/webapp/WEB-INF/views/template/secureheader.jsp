@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-    <title>TeamFire TimeSheet Web Application</title>
+    <title>Car Pooling Web Application</title>
 
     <!-- Bootstrap core CSS -->
     <link href="<c:url value="/static/css/bootstrap.min.css"/>" rel="stylesheet">
@@ -35,27 +35,31 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Fire-TimeSheet</a>
+            <a class="navbar-brand" href="#">Car-pooling</a>
         </div>
-
-        <ul class="nav navbar-nav">
-            <sec:authorize access="hasRole('ROLE_STUDENT')">
-            <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Student <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#"></a></li>
-                    <li><a href="/student/Courselist">My CourseList</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">My Profile</a></li>
-                </ul>
+       <ul class="nav navbar-nav">
+            <sec:authorize access="hasRole('ROLE_RIDER')">
+            <li>
+                <form action="../getProfile" method="post" class="form-horizontal">
+                 <div class="form-group " class="col-xs-4" style=" margin-top: 25px; margin-left: 25px">    
+					<input type="search" class="form-control input-sm" id="id" name="username" 
+					placeholder="search user ">
+					<span style=" margin-top: 25px; margin-left: 25px"
+					 class="glyphicon glyphicon-search form-control-feedback"></span>	
+										
+				</div>
+                </form>
             </li>
             </sec:authorize>
-            <sec:authorize access="hasRole('ROLE_FACULTY')">
+            </ul>
+        <ul class="nav navbar-nav">
+            
+            <sec:authorize access="hasRole('ROLE_DRIVER')">
             <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Faculty <span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">DRIVER <span class="caret"></span></a>
                 <ul class="dropdown-menu">
                     <li><a href="#"></a></li>
-                    <li><a href="/faculty/courseList">Course List</a></li>
+                    <li><a href="../car_registrationForm">AddCar</a></li>
                     <li role="separator" class="divider"></li>
                     
                     
@@ -94,7 +98,7 @@
         <div id="navbar" class="navbar-collapse collapse">
             <form action="/login" class="navbar-form navbar-right">
                 <sec:authorize access="isAuthenticated()">
-                   <a class="navbar-brand" href="../user/get/${username}"> <span class="glyphicon glyphicon-user"> ${lastName} </span></a>
+                    <span class="glyphicon glyphicon-user"> ${username} </span>
                 </sec:authorize>
 
                 <button type="submit" class="btn btn-success">Sign Out</button>

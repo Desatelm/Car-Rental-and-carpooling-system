@@ -35,12 +35,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Fire-TimeSheet</a>
+            <a class="navbar-brand" href="#">Car-pooling System</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
          <form action="/login" class="navbar-form navbar-right">
             <!-- <form action="/courseOffering/list" class="navbar-form navbar-right"> -->
                 <button type="submit" class="btn btn-success">Sign in</button>
+            </form>
+            <form action="/signup_page" class="navbar-form navbar-right">
+            <!-- <form action="/courseOffering/list" class="navbar-form navbar-right"> -->
+                <button type="submit" class="btn btn-success">Sign up</button>
             </form>
         </div><!--/.navbar-collapse -->
     </div>
