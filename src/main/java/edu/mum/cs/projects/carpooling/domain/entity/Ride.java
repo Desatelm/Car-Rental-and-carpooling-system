@@ -2,7 +2,6 @@ package edu.mum.cs.projects.carpooling.domain.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.persistence.*;
@@ -64,7 +63,7 @@ public class Ride {
 		ride.departureDate = ride.getDepartureDate();
 		ride.departureTime = ride.getDepartureTime();
 		ride.noSeat = ride.getNoSeat();
-		ride.status = RideStatus.ONGOING;
+		ride.status = ride.getStatus();
 		ride.price = ride.getPrice();
 		ride.waitingTime = ride.getWaitingTime();
 	}
