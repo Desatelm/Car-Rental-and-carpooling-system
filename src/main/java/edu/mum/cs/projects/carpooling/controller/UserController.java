@@ -21,7 +21,7 @@ import edu.mum.cs.projects.carpooling.service.NotificationService;
 import edu.mum.cs.projects.carpooling.service.UserService;
 
 @Controller
-@Transactional(propagation = Propagation.REQUIRES_NEW)
+@Transactional
 
 public class UserController {
 	@Autowired

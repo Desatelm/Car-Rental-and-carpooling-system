@@ -16,7 +16,7 @@ import edu.mum.cs.projects.carpooling.service.UserService;
 import edu.mum.cs.projects.carpooling.service.VehicleService;
 
 @Controller
-@Transactional(propagation = Propagation.SUPPORTS)
+@Transactional
 public class VehicleController {
 	
 	@Autowired
