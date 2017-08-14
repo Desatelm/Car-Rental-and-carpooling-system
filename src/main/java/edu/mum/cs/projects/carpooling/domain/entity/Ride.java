@@ -43,7 +43,7 @@ public class Ride {
 	@Column(name = "waiting_time")
 	String waitingTime;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	Vehicle vehicle;
 	
 	@OneToMany(mappedBy="ride")
@@ -168,8 +168,8 @@ public class Ride {
 		return user;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUser(User user) {
+		this.user.add(user);
 	}
 
 }
