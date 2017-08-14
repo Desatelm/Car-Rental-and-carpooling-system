@@ -1,8 +1,5 @@
 <%@include file="/WEB-INF/views/template/header.jsp"%>
-
-
 <div>
-
 	<div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4 "
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">

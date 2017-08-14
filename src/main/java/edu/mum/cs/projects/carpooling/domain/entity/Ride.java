@@ -1,66 +1,72 @@
 package edu.mum.cs.projects.carpooling.domain.entity;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.persistence.*;
 
-
-
 @Entity
-@Table(name="ride")
+@Table(name = "ride")
 public class Ride {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ride_id")
 	int id;
-	
-	@Column(name= "departure_place")
+
+	@Column(name = "departure_place")
 	String departure;
-	
-	@Column(name= "destination_place")
+
+	@Column(name = "destination_place")
 	String destination;
-	
-	@Column(name= "pickup_place")
+
+	@Column(name = "pickup_place")
 	String pickUp;
-	
-	@Column(name="departure_date")
+
+	@Column(name = "departure_date")
 	@Temporal(TemporalType.DATE)
 	Date departureDate;
-	
-	
-	/*@Temporal(TemporalType.TIME)
-	@Column(name="departure_time")
-	Time departureTime;
-	*/
-	@ElementCollection
-	List<Double> price= new ArrayList<>();
-	
-	@Column(name="seat_no")
+
+	@Column(name = "departure_time")
+	String departureTime;
+
+	@Column(name = "price")
+	double price;
+
+	@Column(name = "seat_no")
 	int noSeat;
-	
+
 	@Enumerated
 	RideStatus status;
-	
-	/*@Temporal(TemporalType.TIME)
-	@Column(name="waiting_time")
-	Time waitingTime;*/
-	
+
+	@Column(name = "waiting_time")
+	String waitingTime;
+
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	Vehicle vehicle;
 	
 	@OneToMany(mappedBy="ride")
 	List<FeedBack> feedbacks = new ArrayList<>();
-	
-	@OneToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_ride", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ride_id"))
 	List<User> user = new ArrayList<>();
 
 	public Ride() {
-	
+		
+	}
+
+	public Ride(Ride ride) {
+		ride.departure = ride.getDeparture();
+		ride.destination = ride.getDestination();
+		ride.departureDate = ride.getDepartureDate();
+		ride.departureTime = ride.getDepartureTime();
+		ride.noSeat = ride.getNoSeat();
+		ride.status = RideStatus.ONGOING;
+		ride.price = ride.getPrice();
+		ride.waitingTime = ride.getWaitingTime();
 	}
 
 	public int getId() {
@@ -103,19 +109,19 @@ public class Ride {
 		this.departureDate = departureDate;
 	}
 
-	/*public Time getDepartureTime() {
+	public String getDepartureTime() {
 		return departureTime;
 	}
 
-	public void setDepartureTime(Time departureTime) {
+	public void setDepartureTime(String departureTime) {
 		this.departureTime = departureTime;
-	}*/
+	}
 
-	public List<Double> getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(List<Double> price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -135,19 +141,19 @@ public class Ride {
 		this.status = status;
 	}
 
-	/*public Time getWaitingTime() {
+	public String getWaitingTime() {
 		return waitingTime;
 	}
 
-	public void setWaitingTime(Time waitingTime) {
+	public void setWaitingTime(String waitingTime) {
 		this.waitingTime = waitingTime;
-	}*/
+	}
 
-	public Vehicle getVichele() {
+	public Vehicle getVehicle() {
 		return vehicle;
 	}
 
-	public void setVichele(Vehicle vehicle) {
+	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
 

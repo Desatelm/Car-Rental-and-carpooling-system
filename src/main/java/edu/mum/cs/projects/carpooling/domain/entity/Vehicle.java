@@ -24,7 +24,7 @@ public class Vehicle {
 	
 	@ManyToOne(cascade=CascadeType.PERSIST)
 	User user;
-	
+
 	
 	public Vehicle() {
 		super();
@@ -68,6 +68,7 @@ public class Vehicle {
 		this.type = type;
 	}
 
+
 	public String getMake() {
 		return Make;
 	}
@@ -107,6 +108,5 @@ public class Vehicle {
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 	
 }

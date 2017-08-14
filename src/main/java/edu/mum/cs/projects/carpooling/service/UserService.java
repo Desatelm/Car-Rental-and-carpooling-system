@@ -36,7 +36,8 @@ public class UserService {
 	}
 	
 	public User getUserByemail(String email)  {
-		
+		System.err.println("i am here###########################################################################" + email);
+		System.err.println(usersRepository.findById(1));
 		return usersRepository.findByEmailAddress(email);
 	}
 	

@@ -9,8 +9,11 @@ import edu.mum.cs.projects.carpooling.domain.entity.User;
 
 @Repository
 public interface UsersRepository extends JpaRepository<User, Integer> {
-	Optional<User> findByName(String username);     
+
+	Optional<User> findByName(String username);
+
 	User findById(int userId);
+	
 	User findByEmailAddress(String emailAddress);
 
 }

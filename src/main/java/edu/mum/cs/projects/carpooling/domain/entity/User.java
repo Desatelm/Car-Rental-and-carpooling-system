@@ -67,7 +67,8 @@ public class User {
 	@OneToOne(mappedBy="user")
 	private MessageBox messageBox;
 	
-	@OneToMany(mappedBy="user")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@ManyToMany
 	private List<Ride> ride = new ArrayList<>();
 	
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
