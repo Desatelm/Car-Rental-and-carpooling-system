@@ -53,4 +53,7 @@ public class RideService {
 	public List<Ride> getAllRides() {
 		return rideRepository.findAll();
 	}
+	
+	
+	
 }

@@ -64,9 +64,10 @@
 						details &raquo;</a>
 				</p>
 			</div>
-
+			<button type="submit" class="btn btn-default">UnSubscribe Your Ride</button>
 
 		</div>
+	</div>
 	</div>
 
 

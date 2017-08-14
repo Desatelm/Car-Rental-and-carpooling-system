@@ -1,6 +1,6 @@
 <%@include file="/WEB-INF/views/template/header.jsp"%>
 
-
+<%-- 
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -20,7 +20,7 @@
 		<button type="submit" class="btn btn-primary">Search For a
 			Ride</button>
 	</form>
-</div>
+</div> --%>
 <c:if test="${not empty rides or not empty seat}">
 	<div class="jumbotron container">
 		<h4>Ride From ${departure} To ${destination} is available</h4>
@@ -69,18 +69,18 @@
 							<td>${ride.pickUp }</td>
 							<td>${ride.noSeat }</td>
 							<td>${ride.status }</td>
-							<td>${ride.vichele.model }</td>
+							<td>${ride.vehicle.model }</td>
 						</tr>
 					</c:forEach>
 				</table>
 			</div>
+			
+			 <button type="submit" class="btn btn-default">Apply For a Ride</button>
 		</div>
 	</div>
 </c:if>
 
-<script type="text/javascript">
-	
-</script>
+
 
 
 
