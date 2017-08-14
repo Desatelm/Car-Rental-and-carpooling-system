@@ -17,5 +17,15 @@ public class VehicleService {
 	public void creatVehicle(Vehicle vehicle){
 		vehicleRepository.save(vehicle);
 	}
+	
+	public void removeVehicle(Vehicle vehicle){
+		vehicleRepository.delete(vehicle.getId());
+	}
+	
+	public Vehicle getVehicle(int id){
+		return vehicleRepository.getOne(id);
+	}
+	
+	
 
 }

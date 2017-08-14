@@ -20,12 +20,14 @@
  
     <div class='container'>
     <h3>Customer Registration:</h3>
-    <div class='container well col-md-8'>
-			
-		    <div class="form-group col-lg-6">
-            <label class="col-lg-3 control-label">User Name:  ${user.name} </label>                         
+    
+     <div class="form-group col-lg-6">
+    
+            <label class="col-lg-3 control-label"><a href="../getMessageForm/${email}">Message</a></label>
             </div>
-            
+           
+     <div class='container'>
+					                
             <div class="form-group col-lg-6">
             <label class="col-lg-3 control-label">First name: ${user.firstName}</label>           
 	        </div>
@@ -61,7 +63,8 @@
 			<div class="form-group col-lg-6">
             <label class="col-lg-3 control-label">Zip Code:${user.address.zipcode}</label>
             </div>
-	</div>
+	   </div>
+	   
 	</div>
    
 

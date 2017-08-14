@@ -10,7 +10,7 @@ public class MessageBoxService {
 	MessageBoxRepository messageBoxRepository;
 	
 	void creatMessageBox(MessageBox messageBox){
-		messageBoxRepository.save(messageBox);
+		messageBoxRepository.save(messageBox);		
 	}
 	
 

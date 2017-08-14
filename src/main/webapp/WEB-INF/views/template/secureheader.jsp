@@ -1,6 +1,7 @@
 <%@ taglib prefix="sec"
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java"%>
 <html>
 <head>
@@ -22,13 +23,12 @@
 <link href="<c:url value="/static/css/jumbotron.css"/>" rel="stylesheet">
 <link href="<c:url value="/static/css/panels.css"/>" rel="stylesheet">
 <script src="<c:url value="/static/js/user.js"/>"></script>
-<%-- <script src="<c:url value="/static/js/locationMap.js"/>"></script> --%>
-<script
-	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI42L7mYrE1udMiU98gNXDX8Qv=3.exp&sensor=false&libraries=places"></script>
+
 </head>
 
 <body
 	style="background-image: url(/static/welcome.jpg); height: 60vh; background-attachment: fixed; background-size: 100vw 100vh; background-repeat: no-repeat; margin-bottom: 40px;">
+
 
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
@@ -73,8 +73,24 @@
 
 						</ul></li>
 				</sec:authorize>
-
-
+			</ul>
+			
+			<ul class="nav navbar-nav">
+				<sec:authorize access="isAuthenticated()">
+					<li>
+						<form action="../getMessages" method="get"
+							class="form-horizontal">
+							<div class="form-group " class="col-xs-4"
+								style="margin-top: 25px; margin-left: 25px">
+								<input class="form-control" name="email" type="hidden"
+									value=${email} > <div class="col-md-8">
+									<input type="submit" class="btn btn-primary"
+										value=" MailBox">
+								</div>
+							</div>
+						</form>
+					</li>
+				</sec:authorize>
 			</ul>
 			<sec:authentication var="principal" property="principal" />
 			<div id="navbar" class="navbar-collapse collapse">
@@ -89,5 +105,6 @@
 			<!--/.navbar-collapse -->
 		</div>
 	</nav>
+
 
 	<div style="height: 50px;"></div>

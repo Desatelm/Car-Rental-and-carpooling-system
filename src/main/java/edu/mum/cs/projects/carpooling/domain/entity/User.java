@@ -62,10 +62,9 @@ public class User {
 	
 	@Embedded
 	private Rating rating;
-
 	
-	@OneToOne(mappedBy="user")
-	private MessageBox messageBox;
+	@OneToMany(cascade=CascadeType.ALL)
+	private List<MessageBox> messageBox;
 	
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(mappedBy= "user")
@@ -75,6 +74,28 @@ public class User {
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Role roles;
 	
+	
+	
+	public List<Vehicle> getVehicles() {
+		return vehicles;
+	}
+
+	public void setVehicles(List<Vehicle> vehicles) {
+		this.vehicles = vehicles;
+	}
+
+	public List<MessageBox> getMessageBox() {
+		return messageBox;
+	}
+
+	public void setMessageBox(List<MessageBox> messageBox) {
+		this.messageBox = messageBox;
+	}
+
+	public void setRating(Rating rating) {
+		this.rating = rating;
+	}
+
 	public User(){
 		
 	}
@@ -203,16 +224,7 @@ public class User {
 
 	public void setVicheles(List<Vehicle> vehicles) {
 		this.vehicles = vehicles;
-	}
-
-
-	public MessageBox getMessageBox() {
-		return messageBox;
-	}
-
-	public void setMessageBox(MessageBox messageBox) {
-		this.messageBox = messageBox;
-	}
+	}	
 
 	public List<Ride> getRide() {
 		return ride;
