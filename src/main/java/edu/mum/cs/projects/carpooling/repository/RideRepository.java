@@ -28,4 +28,5 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
 	public List<Ride> findByDepartureLikeAndDestinationLikeAndDepartureDateEqualsAndNoSeatGreaterThanEqual(
 			String departure, String destination, Date date, int seat);
 
+	public List<Ride> findByUserId(int id);
 }
