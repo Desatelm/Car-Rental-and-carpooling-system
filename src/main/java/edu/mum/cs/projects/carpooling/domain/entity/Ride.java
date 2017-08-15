@@ -67,7 +67,7 @@ public class Ride {
 	@OneToMany(mappedBy="ride",cascade = CascadeType.PERSIST)
 	List<FeedBack> feedbacks = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "user_ride", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ride_id"))
 	List<User> user = new ArrayList<>();
 

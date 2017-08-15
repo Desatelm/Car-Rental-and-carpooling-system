@@ -63,15 +63,40 @@
 			</div>
 			<div class="col-md-offset-1 col-md-4"
 				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
-				<h2>Subscribe for a ride</h2>
-				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.</p>
-				<p>
-					<a class="btn btn-primary btn-default" href="#" role="button">View
-						details &raquo;</a>
-				</p>
-			</div>
-
-			<button type="submit" class="btn btn-default">UnSubscribe Your Ride</button>
+				<c:forEach var="post" items="${allRides}">
+					<div class="row">
+						<ul>
+							<li>
+								<p>Departure : ${post.departure}</p>
+								<p>Destination : ${post.destination}</p>
+								<p>price : ${post.price}USD Available Seat:</p>
+								<P>Status : ${post.status}</P>
+								<p>Vehicle :</p>
+								<P>Posted By : ${post.offeredBy}</P>
+							</li>
+						</ul>
+						<div>
+							<a class="btn btn-primary btn-default"
+								href="/ride/apply/${post.id}" role="button">Apply</a>
+						</div>
+						<div>
+							<form method="post" action="../comment">
+								<textarea rows="3" cols="50" name="comment"
+									placeholder="write comment here ...."></textarea>
+								<div>
+									<input class="form-control" name="email" type="hidden"
+										value=${email} >
+								</div>
+								<div>
+									<input class="form-control" name="id" type="hidden"
+										value="${post.id}">
+								</div>
+								<button type="submit" class="btn btn-secondary btn-lg">post</button>
+							</form>
+						</div>
+						<hr>
+					</div>
+				</c:forEach>
 
 
 		</div>
