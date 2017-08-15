@@ -62,4 +62,9 @@ public class RideService {
 	{
 		return rideRepository.findByUser_emailAddress(email);
 	}
+	
+	public List<Ride> getBookedRides(String email)
+	{
+		return rideRepository.getBookedRides(email);
+	}
 }

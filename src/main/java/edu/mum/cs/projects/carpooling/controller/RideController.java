@@ -99,5 +99,14 @@ public class RideController {
 		
 		return "offeredride";
 	}
+	
+	@GetMapping("/booked")
+	public String bookedRides(Model model)
+	{
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Ride> rides = rideService.getBookedRides(user.getEmailAddress());
+		model.addAttribute("rides", rides);		
+		return "offeredride";
+	}
 
 }
