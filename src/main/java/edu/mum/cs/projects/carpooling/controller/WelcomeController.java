@@ -24,8 +24,7 @@ public class WelcomeController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		session.setAttribute("username", user.getLastName());
 		session.setAttribute("email", user.getEmailAddress());
-		//model.addAttribute("vehicle", vehicleService.getVehicleByUser(user));
-		System.err.println("########################### vehicles num" + user.getVicheles().size());
+		model.addAttribute("vehicle", user.getVehicles());
 		session.setAttribute("myRidePost", user.getRide());
 		
 

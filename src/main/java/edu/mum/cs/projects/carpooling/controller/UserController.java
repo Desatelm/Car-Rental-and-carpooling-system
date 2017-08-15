@@ -60,7 +60,7 @@ public class UserController {
 	public String updateUser(User user, Address address, List<Vehicle> vehicles) {
 		User user1 = userService.getUser(user.getName()) ;
 		user1.setAddress(address);
-		user1.setVicheles(vehicles);	
+		user1.setVehicles(vehicles);	
 		userService.createUser(user1);
 		return "redirect:/Confirmation";
 	}

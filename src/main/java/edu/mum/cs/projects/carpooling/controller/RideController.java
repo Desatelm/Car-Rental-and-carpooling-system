@@ -41,7 +41,7 @@ public class RideController {
 	public String processRide(Ride ride, @RequestParam String email, @RequestParam String model, Model mod) {
 
 		User user = userService.getUserByemail(email);
-		List<Vehicle> vehicles = user.getVicheles();
+		List<Vehicle> vehicles = user.getVehicles();
 		mod.addAttribute("allRides", rideService.getAllRides());
 		for (Vehicle vehicle : vehicles) {
 			if (vehicle.getModel().equals(model)) {
