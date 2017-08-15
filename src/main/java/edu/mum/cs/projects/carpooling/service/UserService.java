@@ -7,11 +7,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
 import edu.mum.cs.projects.carpooling.domain.entity.CustomUserDetails;
-
-
 import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 
@@ -19,11 +15,11 @@ import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 @Transactional
 public class UserService {
 	@Autowired
-	private UsersRepository usersRepository;	
-	
+	private UsersRepository usersRepository;
+
 	@Transactional
 	public void createUser(User user) {
-		usersRepository.save(user);		
+		usersRepository.save(user);
 	}
 
 	public User getUserByID(int userId) {
@@ -37,12 +33,12 @@ public class UserService {
 		}
 		return optionalUsers.map(User::new).get();
 	}
-	
+
 	@Transactional
-	public User getUserByemail(String email)  {		
+	public User getUserByemail(String email) {
 		return usersRepository.findByEmailAddress(email);
 	}
-	
+
 	public User getUser(String username) throws UsernameNotFoundException {
 		Optional<User> optionalUsers = usersRepository.findByName(username);
 
@@ -54,5 +50,5 @@ public class UserService {
 	public void deleteUser(User user) {
 		usersRepository.delete(user);
 	}
-		
+
 }

@@ -1,6 +1,7 @@
 package edu.mum.cs.projects.carpooling.domain.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class Address {
@@ -10,7 +11,7 @@ public class Address {
 	String street;
 	String state;
 	String country;
-	
+
 	int zipcode;
 
 	public String getCity() {

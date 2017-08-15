@@ -12,21 +12,29 @@ import edu.mum.cs.projects.carpooling.domain.entity.User;
 public class NotificationService {
 	@Autowired
 	private JavaMailSender javaMailSender;
-	
-	public NotificationService(JavaMailSender javaMailSender) {		
+
+	public NotificationService(JavaMailSender javaMailSender) {
 		this.javaMailSender = javaMailSender;
 	}
-	
-	public void sendNotification(User user) throws MailException{
-		//send email
+
+	public void sendNotification(User user) throws MailException {
+		// send email
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmailAddress());
-		mail.setFrom("destalemtes@gmail.com");
+		mail.setFrom("2dbcarpoolingsystem@gmail.com");
 		mail.setSubject("Registration ");
 		mail.setText("Thank you for joining to our CarPooling system");
 		javaMailSender.send(mail);
 	}
-	
-	
-	 
+
+	public void sendNotificationNewMessage(User user) throws MailException {
+		// send email
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setTo(user.getEmailAddress());
+		mail.setFrom("2dbcarpoolingsystem@gmail.com");
+		mail.setSubject("Registration ");
+		mail.setText("You got an new message at 2dbcarPooling system");
+		javaMailSender.send(mail);
+	}
+
 }
