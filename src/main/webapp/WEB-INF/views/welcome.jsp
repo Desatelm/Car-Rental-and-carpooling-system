@@ -7,12 +7,10 @@
 
 		<h3>Welcome ${lastName} !!!</h3>
 		<div class="col-sm-3">.col-sm-3</div>
-  <div class="col-sm-6">.col-sm-6</div>
-  <div class="col-sm-3">.col-sm-3</div>
-
+          
 		<div class="row" style="padding-top: 20px;">
-			<div class=" col-md-3 "
-				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
+		    <div class=" col-md-4">
+			<div style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
 				<h1>Car-Pooling</h1>
 				<p>This is a template for a simple marketing or informational.</p>
 				<p>
@@ -20,21 +18,8 @@
 						more &raquo;</a>
 				</p>
 			</div>
-
-			<div class="col-md-offset-1 col-md-4 "
-				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
-				<h1>My-Rides</h1>
-				<p>This is a template for a simple marketing or informational.</p>
-				<p>
-					<a class="btn btn-primary btn-lg" href="#" role="button">Learn
-						more &raquo;</a>
-				</p>
-			</div>
-			
-		</div>
-		<div class="row" style="padding-top: 20px;">
-			<div class="col-md-offset-1 col-md-4"
-				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
+            
+            <div style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
 				<h2>List Of cars</h2>
 				<table
 					class="table table-striped, table table-hover table table-condensed table-bordered">
@@ -47,10 +32,8 @@
 					<th>Ride</th>
 					<th>Action</th>
 
-
 					</tr>
 					<c:forEach var="vehicle" items="${vehicle}">
-
 						<tr>
 							<td>${vehicle.id}</td>
 							<td>${vehicle.make}</td>
@@ -63,10 +46,75 @@
 									</form></td>
 					</c:forEach>
 				</table>
+			</div>  
+			
+			<div  style="background: rgba(0, 0, 0, 0.3);  border-radius: 5px; margin-top: 20px;">
+				<h2>POST OFFERS</h2>
+				<form method="post" action="../registed">
+				<fieldset>
+					<div class="form-row">
+						<div>
+							Departure : <input class="placepicker form-control" type="text"
+								id="departure" name="departure" placeholder="Departure location" />
+
+						</div>
+						<div>
+							Destination: <input type="text" class="placepicker form-control"
+								id="destination" name="destination"
+								placeholder="Destination location" />
+
+						</div>
+
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								Departure Date : <input class="form-control"
+									name="registration_date" id="registration-date"
+									name="departureDate" type="date" />
+							</div>
+							<div class="form-group col-md-6">
+								Departure Time : <input class="form-control"
+									id="registration-time" name="departureTime" type="time" />
+							</div>
+						</div>
+						<div>
+
+							vehicle:<select name="model" class="form-control">
+								<c:forEach var="car" items="${userVehicle }">
+									<option value="${car.id }">${car.make},${car.model},
+										${car.type}</option>
+								</c:forEach>
+							</select>
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								Number of Seats: <input type="number" class="form-control"
+									name="noSeat" />
+							</div>
+							<div class="form-group col-md-6">
+								Price: <input type="number" class="form-control" name="price" />
+							</div>
+						</div>
+
+						<div>
+							Waiting Time <input class="form-control" name="waitingTime" />
+						</div>
+						<div>
+							<input class="form-control" name="email" type="hidden"
+								value=${email} >
+						</div>
+
+						<button type="submit" class="btn btn-secondary btn-lg">POST</button>
+					</div>
+				</fieldset>
+			</form>
 			</div>
-			<div class="col-md-offset-1 col-md-4"
-				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
+		    </div>
+		<div class="col-md-offset-1 col-md-6" >
+            <div style="background: rgba(0, 0, 0, 0.3);  border-radius: 5px; margin-top: 20px; margin-left: 20px;">
+				<h1>List of Offered Rides.....</h1>
+				
 				<c:forEach var="post" items="${allRides}">
+				<div style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
 					<div class="row">
 						<ul>
 							<li>
@@ -78,31 +126,31 @@
 								<P>Posted By : ${post.offeredBy}</P>
 							</li>
 						</ul>
-						<div>
-							<a class="btn btn-primary btn-default"
-								href="/ride/apply/${post.id}" role="button">Apply</a>
-						</div>
-						<div>
+						<div>													
 							<form method="post" action="../comment">
-								<textarea rows="3" cols="50" name="comment"
-									placeholder="write comment here ...."></textarea>
-								<div>
+								<input class="form-control input-sm" type ="search" name="comment"
+									placeholder="write comment here ...."></input>								
 									<input class="form-control" name="email" type="hidden"
-										value="${email}" >
-								</div>
-								<div>
+										value="${email}" >								
 									<input class="form-control" name="id" type="hidden"
-										value="${post.id}">
-								</div>
-								<button type="submit" class="btn btn-secondary btn-lg">post</button>
+										value="${post.id}">	
+								<a class="pull-right btn btn-primary btn-default"
+								href="/ride/apply/${post.id}" role="button">Apply</a>
 							</form>
+							
 						</div>
 						<hr>
 					</div>
+					</div>
 				</c:forEach>
-
-
+			</div>			
+	    </div>	
 		</div>
+		
+           
+	</div>
+	<div class="container pull-left">
+	
 	</div>
 	</div>
 
