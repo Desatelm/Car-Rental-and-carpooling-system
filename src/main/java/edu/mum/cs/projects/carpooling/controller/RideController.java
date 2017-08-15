@@ -1,6 +1,5 @@
 package edu.mum.cs.projects.carpooling.controller;
 
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -60,7 +59,7 @@ public class RideController {
 
 	@GetMapping(value = "/apply/{id}")
 	public String applyForRide(@PathVariable("id") Integer id, Model model) {
-		System.out.println("*******************" + id);
+
 		Ride ride = rideService.getRideById(id);
 		User user = userService.getUserByemail(ride.getOfferedBy());
 
@@ -73,5 +72,18 @@ public class RideController {
 		model.addAttribute("ride", ride);
 		model.addAttribute("user", user);
 		return "ride-apply";
+	}
+
+	@PostMapping(value = "/booked")
+	public String bookRide(@RequestParam String email, @RequestParam int postId, @RequestParam int seat) {
+
+		User user = userService.getUserByemail(email);
+		Ride ride = rideService.getRideById(postId);
+		System.out.println("*******************" + user + "  and   " + ride);
+		user.setRide(ride);
+		ride.setNoSeat(ride.getNoSeat() - seat);
+		rideService.createRide(ride);
+		System.out.println("*******************");
+		return "redirect:/ride/registerform";
 	}
 }
