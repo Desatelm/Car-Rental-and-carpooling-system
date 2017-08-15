@@ -116,8 +116,8 @@ public class RideController {
 		return "offeredride";
 	}
 	
-	@GetMapping("/booked")
-	public String bookedRides(Model model)
+	@GetMapping("/booked/{id}")
+	public String bookedRides(@PathVariable("id") Integer id,Model model)
 	{
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Ride> rides = rideService.getBookedRides(user.getEmailAddress());

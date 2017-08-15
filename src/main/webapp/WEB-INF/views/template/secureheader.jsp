@@ -68,20 +68,24 @@
 			</ul>
 			<ul class="nav navbar-nav">
 
-				<sec:authorize access="hasRole('ROLE_DRIVER')">
+				<sec:authorize access="isAuthenticated()">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">DRIVER <span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li><a href="#"></a></li>
+							<sec:authorize access="hasRole('ROLE_DRIVER')">
 							<li><a href="../car_registrationForm">AddCar</a></li>
+							</sec:authorize>
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/registerform/${id}">Post Ride</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/offered">See My Ride Offers</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/ride/booked">See Seats Booked</a></li>
+							<li><a href="/ride/booked/${id}">See Seats Booked</a></li>
 						</ul></li>
+						
+						
 				</sec:authorize>
 			</ul>
 			
