@@ -56,35 +56,34 @@
 						<form action="../getProfile" method="post" class="form-horizontal">
 							<div class="form-group " class="col-xs-4"
 								style="margin-top: 25px; margin-left: 25px">
+								
 								<input type="search" class="form-control input-sm" id="id"
 									name="username" placeholder="search user "> <span
 									style="margin-top: 25px; margin-left: 25px"
 									class="glyphicon glyphicon-search form-control-feedback"></span>
 
 							</div>
-						</form>
+						</form> 
+						<a href="/ride/offered">See booked Rides</a>
 					</li>
 				</sec:authorize>
 			</ul>
 			<ul class="nav navbar-nav">
 
-				<sec:authorize access="isAuthenticated()">
+				<sec:authorize access="hasRole('ROLE_DRIVER')">
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" role="button" aria-haspopup="true"
 						aria-expanded="false">DRIVER <span class="caret"></span></a>
 						<ul class="dropdown-menu">
-							<li><a href="#"></a></li>
-							<sec:authorize access="hasRole('ROLE_DRIVER')">
-							<li><a href="../car_registrationForm">AddCar</a></li>
-							</sec:authorize>
+							<li><a href="#"></a></li>							
+							<li><a href="../car_registrationForm">AddCar</a></li>							
 							<li role="separator" class="divider"></li>
-							<li><a href="/ride/registerform/${id}">Post Ride</a></li>
+							<li><a href="/ride/registerform/${id}">Post Ride</a></li>							
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/offered">See My Ride Offers</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/booked/${id}">See Seats Booked</a></li>
-						</ul></li>
-						
+						</ul></li>						
 						
 				</sec:authorize>
 			</ul>

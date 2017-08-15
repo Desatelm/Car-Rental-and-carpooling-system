@@ -1,5 +1,6 @@
 package edu.mum.cs.projects.carpooling.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
@@ -44,6 +46,16 @@ public class RideController {
 		model.addAttribute("allRides", rideService.getAllRides());
 		return "RidePostRegistration";
 	}
+	
+	/*@GetMapping(value = "/registerform") 
+	  public String get(Model model) {
+	  
+	  RestTemplate restTemp = new RestTemplate(); 
+	  List <Ride> rides = (List<Ride>) restTemp.getForObject("http://localhost:9090/Rest/rides", ArrayList.class); 
+	  model.addAttribute("allRides",rides); 
+	  return "RidePostRegistration";
+	  }*/
+	 
 	
 	@GetMapping(value = "/registerform/{id}")
 	public String showPostRideForm(@PathVariable("id") Integer id, Model model) {
@@ -102,8 +114,9 @@ public class RideController {
 		user.setRide(ride);
 		ride.setNoSeat(ride.getNoSeat() - seat);
 		rideService.createRide(ride);
+		userService.createUser(user);
 		System.out.println("*******************");
-		return "redirect:/ride/registerform";
+		return "redirect:/welcom";
 	}
 	
 	@GetMapping("/offered")
