@@ -13,7 +13,7 @@ import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
 @Repository
 public interface RideRepository extends JpaRepository<Ride, Integer> {
 
-	Optional<Ride> findById(int id);
+	Ride findById(int id);
 
 	Ride findByDeparture(String departure);
 
@@ -28,4 +28,5 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
 	public List<Ride> findByDepartureLikeAndDestinationLikeAndDepartureDateEqualsAndNoSeatGreaterThanEqual(
 			String departure, String destination, Date date, int seat);
 
+	public List<Ride> findByUserId(int id);
 }

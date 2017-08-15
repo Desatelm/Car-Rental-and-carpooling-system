@@ -53,4 +53,9 @@ public class RideService {
 	public List<Ride> getAllRides() {
 		return rideRepository.findAll();
 	}
+
+	public Ride getRideById(int id) {
+		return rideRepository.findById(id);
+	}
+
 }

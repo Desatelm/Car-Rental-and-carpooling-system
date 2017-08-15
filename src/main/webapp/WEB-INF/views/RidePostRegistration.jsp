@@ -1,6 +1,5 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@include file="/WEB-INF/views/template/secureheader.jsp"%>
-
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4">
@@ -72,14 +71,15 @@
 								<p>price : ${post.price}USD Available Seat: </p>
 								<P>Status : ${post.status}</P>
 								<p>Vehicle :</p>
+								<P>Posted By : ${post.offeredBy}</P>
 							</li>
 						</ul>
 						<div>
-							<a class="btn btn-primary btn-default" href="#" role="button">Apply</a>
+							<a class="btn btn-primary btn-default" href="/ride/apply/${post.id}" role="button">Apply</a>
 						</div>
 						<div>
 							<textarea rows="3" cols="50" placeholder="write comment here ...."></textarea>
-							<<a class="btn btn-primary btn-default" href="#" role="button">Post</a>
+							<a class="btn btn-primary btn-default" href="#" role="button">Post</a>
 						</div>
 						<hr>
 					</div>

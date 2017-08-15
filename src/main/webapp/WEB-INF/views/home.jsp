@@ -1,6 +1,27 @@
 <%@include file="/WEB-INF/views/template/header.jsp"%>
-<div>
-	<div class="row" style="padding-top: 20px;">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+	<br />
+	<div class="container">
+		<form class="form-inline" action="/search" method="post">
+			<label class="sr-only" for="departure"></label> <input type="text"
+				class="form-control mb-2 mr-sm-2 mb-sm-0" name="departure"
+				value="${departure }" id="departure" placeholder="Your Departure">
+			<label class="sr-only" for="inlineFormInputGroup"></label>
+			<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+				<input type="text" class="form-control" id="destination"
+					value="${destination }" name="destination"
+					placeholder="Your Destination">
+			</div>
+
+			<button type="submit" class="btn btn-primary">Search For a
+				Ride</button>
+		</form>
+	</div>
+	<!-- <div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4 "
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
 			<h1>Car-Pooling System</h1>
@@ -27,8 +48,8 @@
 					details &raquo;</a>
 			</p>
 		</div>
-		</div>
-		<div class="row" style="padding-top: 20px;">
+	</div>
+	<div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4"
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
 			<h2>Search For A Comfortable and Cheap price</h2>
@@ -57,27 +78,44 @@
 		<div style="height: 100px;"></div>
 	</div>
 
-	
 
-	<footer style="margin-top:150px; ">
-		<p align="center"><span style="background: rgba(0,0,0,0.4);color:white; border-radius:5px;padding:5px;">&copy; 2017 TeamFire, Inc.</span></p>
+
+	<footer style="margin-top: 150px;">
+		<p align="center">
+			<span
+				style="background: rgba(0, 0, 0, 0.4); color: white; border-radius: 5px; padding: 5px;">&copy;
+				2017 TeamFire, Inc.</span>
+		</p>
 	</footer>
 
 </div>
-<!-- /container -->
+/container
 
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
+Bootstrap core JavaScript
+==================================================
+Placed at the end of the document so the pages load faster
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script>
 	window.jQuery
 			|| document
 					.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"><\/script>')
-</script>
+</script> -->
 <script src="<c:url value="/static/js/custome.js"/>"></script>
 <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
+
+<!-- Google Api -->
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmMANqWLDs12mTUiiX4SuLJeftpYyQdgk&libraries=places"></script>
+<script>
+	function initialize() {
+		var departure = document.getElementById("departure");
+		var destination = document.getElementById("destination");
+		var autocomplete = new google.maps.places.Autocomplete(departure);
+		var autocomplete2 = new google.maps.places.Autocomplete(destination);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 </body>
 </html>

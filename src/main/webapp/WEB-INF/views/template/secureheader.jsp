@@ -24,6 +24,13 @@
 <link href="<c:url value="/static/css/panels.css"/>" rel="stylesheet">
 <script src="<c:url value="/static/js/user.js"/>"></script>
 
+<%-- <script src="<c:url value="/static/js/locationMap.js"/>"></script> --%>
+<script
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI42L7mYrE1udMiU98gNXDX8Qv=3.exp&sensor=false&libraries=places"></script>
+	
+	<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 </head>
 
 <body
@@ -70,7 +77,10 @@
 							<li><a href="../car_registrationForm">AddCar</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/registerform">Post Ride</a></li>
-
+							<li role="separator" class="divider"></li>
+							<li><a href="/ride/registerform">See My Ride Offers</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="/ride/registerform">See Seats Booked</a></li>
 						</ul></li>
 				</sec:authorize>
 			</ul>
@@ -92,6 +102,7 @@
 					</li>
 				</sec:authorize>
 			</ul>
+			
 			<sec:authentication var="principal" property="principal" />
 			<div id="navbar" class="navbar-collapse collapse">
 				<form action="/login" class="navbar-form navbar-right">
@@ -105,6 +116,39 @@
 			<!--/.navbar-collapse -->
 		</div>
 	</nav>
+	
+	<br/>
+<div class="container">
+	<form class="form-inline" action="/search" method="post">
+		<label class="sr-only" for="departure"></label> <input type="text"
+			class="form-control mb-2 mr-sm-2 mb-sm-0" name="departure"
+			value="${departure }" id="departure" placeholder="Your Departure">
+		<label class="sr-only" for="inlineFormInputGroup"></label>
+		<div class="input-group mb-2 mr-sm-2 mb-sm-0">
+			<input type="text" class="form-control" id="destination"
+				value="${destination }" name="destination"
+				placeholder="Your Destination">
+		</div>
+
+		<button type="submit" class="btn btn-primary">Search For a Ride</button>
+	</form>
+	</div>
+	
+		
 
 
 	<div style="height: 50px;"></div>
+	
+	<!-- Google Api -->
+<script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmMANqWLDs12mTUiiX4SuLJeftpYyQdgk&libraries=places"></script>
+<script>
+	function initialize() {
+		var departure = document.getElementById("departure");
+		var destination = document.getElementById("destination");
+		var autocomplete = new google.maps.places.Autocomplete(departure);
+		var autocomplete2 = new google.maps.places.Autocomplete(destination);
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+

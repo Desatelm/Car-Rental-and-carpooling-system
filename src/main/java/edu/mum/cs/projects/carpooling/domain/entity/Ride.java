@@ -30,6 +30,9 @@ public class Ride {
 
 	@Column(name = "departure_time")
 	String departureTime;
+	
+	@Column(name = "offered_by")
+	String offeredBy;
 
 	@Column(name = "price")
 	double price;
@@ -43,7 +46,7 @@ public class Ride {
 	@Column(name = "waiting_time")
 	String waitingTime;
 
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	Vehicle vehicle;
 	
 	@OneToMany(mappedBy="ride")
@@ -148,6 +151,14 @@ public class Ride {
 		this.waitingTime = waitingTime;
 	}
 
+	public String getOfferedBy() {
+		return offeredBy;
+	}
+
+	public void setOfferedBy(String offeredBy) {
+		this.offeredBy = offeredBy;
+	}
+
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
@@ -168,8 +179,8 @@ public class Ride {
 		return user;
 	}
 
-	public void setUser(List<User> user) {
-		this.user = user;
+	public void setUser(User user) {
+		this.user.add(user);
 	}
 
 }
