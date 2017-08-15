@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,7 +59,7 @@ public class UserController {
 	public String updateUser(User user, Address address, List<Vehicle> vehicles) {
 		User user1 = userService.getUser(user.getName()) ;
 		user1.setAddress(address);
-		user1.setVicheles(vehicles);	
+		user1.setVehicles(vehicles);	
 		userService.createUser(user1);
 		return "redirect:/Confirmation";
 	}

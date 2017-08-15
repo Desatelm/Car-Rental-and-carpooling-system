@@ -49,7 +49,7 @@ public class Ride {
 	@ManyToOne(cascade = CascadeType.ALL)
 	Vehicle vehicle;
 	
-	@OneToMany(mappedBy="ride")
+	@OneToMany(mappedBy="ride",cascade = CascadeType.PERSIST)
 	List<FeedBack> feedbacks = new ArrayList<>();
 
 	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
@@ -171,8 +171,8 @@ public class Ride {
 		return feedbacks;
 	}
 
-	public void setFeedbacks(List<FeedBack> feedbacks) {
-		this.feedbacks = feedbacks;
+	public void setFeedbacks(FeedBack feedbacks) {
+		this.feedbacks.add(feedbacks);
 	}
 
 	public List<User> getUser() {

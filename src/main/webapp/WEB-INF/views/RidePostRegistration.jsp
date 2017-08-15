@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4">
-			<form method="post" action="registed">
+			<form method="post" action="../registed">
 				<fieldset>
 					<div class="form-row">
 						<div>
@@ -30,10 +30,12 @@
 							</div>
 						</div>
 						<div>
-							vehicle: <select name="model" class="form-control">
-								<option value="2009">2009</option>
-								<option value="2010">2010</option>
-								<option value="2011">2011</option>
+
+							vehicle:<select name="model" class="form-control">
+								<c:forEach var="car" items="${userVehicle }">
+									<option value="${car.id }">${car.make},${car.model},
+										${car.type}</option>
+								</c:forEach>
 							</select>
 						</div>
 						<div class="form-row">
@@ -62,24 +64,36 @@
 		</div>
 		<div class="col-sm-8">
 			<div>
-				<c:forEach var="post" items="${allRides}" >
+				<c:forEach var="post" items="${allRides}">
 					<div class="row">
 						<ul>
 							<li>
 								<p>Departure : ${post.departure}</p>
 								<p>Destination : ${post.destination}</p>
-								<p>price : ${post.price}USD Available Seat: </p>
+								<p>price : ${post.price}USD Available Seat:</p>
 								<P>Status : ${post.status}</P>
 								<p>Vehicle :</p>
 								<P>Posted By : ${post.offeredBy}</P>
 							</li>
 						</ul>
 						<div>
-							<a class="btn btn-primary btn-default" href="/ride/apply/${post.id}" role="button">Apply</a>
+							<a class="btn btn-primary btn-default"
+								href="/ride/apply/${post.id}" role="button">Apply</a>
 						</div>
 						<div>
-							<textarea rows="3" cols="50" placeholder="write comment here ...."></textarea>
-							<a class="btn btn-primary btn-default" href="#" role="button">Post</a>
+							<form method="post" action="../comment">
+								<textarea rows="3" cols="50" name="comment"
+									placeholder="write comment here ...."></textarea>
+								<div>
+									<input class="form-control" name="email" type="hidden"
+										value=${email} >
+								</div>
+								<div>
+									<input class="form-control" name="id" type="hidden"
+										value="${post.id}">
+								</div>
+								<button type="submit" class="btn btn-secondary btn-lg">post</button>
+							</form>
 						</div>
 						<hr>
 					</div>

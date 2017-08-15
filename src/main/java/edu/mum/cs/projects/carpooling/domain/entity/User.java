@@ -101,6 +101,7 @@ public class User {
 	}
 	
 	public User (User user){
+		this.id = user.getId();
 		this.active = user.getActive();
 		this.address = user.getAddress();
 		this.dateOfBirth = user.getDOB();
@@ -114,7 +115,7 @@ public class User {
 		this.ride = user.getRide();
 		this.sex = user.getSex();
 		this.roles = user.getRoles();
-		this.vehicles = user.getVicheles();		
+		this.vehicles = user.getVehicles();		
 		
 	}
 
@@ -217,14 +218,6 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	public List<Vehicle> getVicheles() {
-		return vehicles;
-	}
-
-	public void setVicheles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}	
 
 	public List<Ride> getRide() {
 		return ride;

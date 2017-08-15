@@ -15,20 +15,19 @@ import edu.mum.cs.projects.carpooling.service.VehicleService;
 @Controller
 @Transactional(propagation = Propagation.REQUIRES_NEW)
 public class WelcomeController {
-	
+
 	VehicleService vehicleService;
-	
+
 	@RequestMapping("/welcome")
 	public String dashboard(Model model, HttpSession session) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		session.setAttribute("username", user.getLastName());
 		session.setAttribute("email", user.getEmailAddress());
-		//model.addAttribute("vehicle", vehicleService.getVehicleByUser(user));
-		System.err.println("########################### vehicles num" + user.getVicheles().size());
+		// model.addAttribute("vehicle", vehicleService.getVehicleByUser(user));
 		session.setAttribute("myRidePost", user.getRide());
-		
-
+		session.setAttribute("id", user.getId());
+        System.err.println(" USER ID FROM WELCOME CONTROLER " + user.getId());
 		return "welcome";
 	}
 }
