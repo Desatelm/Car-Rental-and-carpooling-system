@@ -30,7 +30,9 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
 			String departure, String destination, Date date, int seat);
 
 	public List<Ride> findByUserId(int id);
+
 	public List<Ride> findByUser_emailAddress(String name);
+
 	@Query("from Ride r where r.user is not empty and r.offeredBy=:email")
 	public List<Ride> getBookedRides(@Param("email") String email);
 }

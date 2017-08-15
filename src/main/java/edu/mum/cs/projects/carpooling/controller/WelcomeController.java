@@ -25,7 +25,7 @@ public class WelcomeController {
 	public String dashboard(Model model, HttpSession session) {
 
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		
+
 		RestTemplate restTemp = new RestTemplate();
 		session.setAttribute("username", user.getLastName());
 		session.setAttribute("email", user.getEmailAddress());

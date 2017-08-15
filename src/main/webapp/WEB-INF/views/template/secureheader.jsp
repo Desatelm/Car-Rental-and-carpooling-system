@@ -63,6 +63,7 @@
 
 							</div>
 						</form>
+						<a href="/ride/booked">My Booked Rides</a>
 					</li>
 				</sec:authorize>
 			</ul>

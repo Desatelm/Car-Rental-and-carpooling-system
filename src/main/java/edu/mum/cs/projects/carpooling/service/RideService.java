@@ -57,14 +57,12 @@ public class RideService {
 	public Ride getRideById(int id) {
 		return rideRepository.findById(id);
 	}
-	
-	public List<Ride> getRideByEmail(String email)
-	{
+
+	public List<Ride> getRideByEmail(String email) {
 		return rideRepository.findByUser_emailAddress(email);
 	}
-	
-	public List<Ride> getBookedRides(String email)
-	{
+
+	public List<Ride> getBookedRides(String email) {
 		return rideRepository.getBookedRides(email);
 	}
 }
