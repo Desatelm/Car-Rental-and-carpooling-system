@@ -71,6 +71,7 @@
 								<p>price : ${post.price}USD Available Seat: </p>
 								<P>Status : ${post.status}</P>
 								<p>Vehicle :</p>
+								<P>Posted By : ${post.offeredBy}</P>
 							</li>
 						</ul>
 						<div>

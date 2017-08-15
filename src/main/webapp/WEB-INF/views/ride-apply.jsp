@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-		<h3>Ride Information</h3>
+			<h3>Ride Information</h3>
 			<P>Leaving from : ${ride.departure}</P>
 			<P>Destination :${ride.destination}</P>
 			<P>When :${ride.departureDate}</p>
@@ -13,17 +13,17 @@
 		<div class="col">
 			<div class="row">
 				<h3>Driver Information</h3>
-				<P>Name :</P>
-				<P>Age :</P>
+				<P>Name :${user.firstName} ${user.lastName}</P>
 				<P></P>
 			</div>
 			<div class="row">
 				<h3>Select Number of seats</h3>
 				<select>
-					<option>1 seat</option>
-					<option>2 seat</option>
+					<c:forEach var="i" begin="1" end="${ride.noSeat }">
+						<option>I want to book "${i}" seat</option>
+					</c:forEach>
 				</select>
-				<button>Book and Make a Payment</button>
+				<a class="btn btn-primary btn-default" href="#" role="button">Book and Make payment</a>
 			</div>
 		</div>
 	</div>
