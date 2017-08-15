@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -63,11 +62,11 @@ public class Ride {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	Vehicle vehicle;
-	
-	@OneToMany(mappedBy="ride",cascade = CascadeType.PERSIST)
+
+	@OneToMany(mappedBy = "ride", cascade = CascadeType.PERSIST)
 	List<FeedBack> feedbacks = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "user_ride", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ride_id"))
 	List<User> user = new ArrayList<>();
 

@@ -23,7 +23,9 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;;
 
 @Entity
 @Table(name = "user")
@@ -66,6 +68,7 @@ public class User {
 	@Column(name = "password")
 	private String password;
 
+	@JsonBackReference
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Vehicle> vehicles = new ArrayList<Vehicle>();
@@ -79,6 +82,7 @@ public class User {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<MessageBox> messageBox;
 
+	@JsonBackReference
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@ManyToMany(mappedBy = "user")
 	private List<Ride> ride = new ArrayList<>();

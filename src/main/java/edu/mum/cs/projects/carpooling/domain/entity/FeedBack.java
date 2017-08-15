@@ -14,6 +14,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+
 @Entity
 @Table(name = "feedback")
 public class FeedBack {
@@ -33,11 +36,12 @@ public class FeedBack {
 	@OneToOne
 	User user;
 
+	@JsonBackReference
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	Ride ride;
-	
-	public FeedBack(){
-		
+
+	public FeedBack() {
+
 	}
 
 	public FeedBack(FeedBack feedBack) {

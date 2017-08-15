@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
@@ -28,4 +30,9 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
 			String departure, String destination, Date date, int seat);
 
 	public List<Ride> findByUserId(int id);
+
+	public List<Ride> findByUser_emailAddress(String name);
+
+	@Query("from Ride r where r.user is not empty and r.offeredBy=:email")
+	public List<Ride> getBookedRides(@Param("email") String email);
 }

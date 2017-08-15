@@ -1,6 +1,5 @@
 package edu.mum.cs.projects.carpooling.controller;
 
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
-import edu.mum.cs.projects.carpooling.domain.entity.Vehicle;
 import edu.mum.cs.projects.carpooling.service.FeedBackService;
 import edu.mum.cs.projects.carpooling.service.RideService;
 import edu.mum.cs.projects.carpooling.service.UserService;
@@ -49,6 +47,7 @@ public class FeedBackController {
 		Ride ride=rideService.getRideById(feedback.getRide().getId());
 		ride.getFeedbacks().remove(feedback);
 		feedBackService.removeFeedBack(feedback);
+
 		return "RidePostRegistration";
 	}
 }

@@ -6,9 +6,12 @@
 	<div class="">
 
 		<h3>Welcome ${lastName} !!!</h3>
+		<div class="col-sm-3">.col-sm-3</div>
+  <div class="col-sm-6">.col-sm-6</div>
+  <div class="col-sm-3">.col-sm-3</div>
 
 		<div class="row" style="padding-top: 20px;">
-			<div class="col-md-offset-1 col-md-4 "
+			<div class=" col-md-3 "
 				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
 				<h1>Car-Pooling</h1>
 				<p>This is a template for a simple marketing or informational.</p>
@@ -55,7 +58,7 @@
 							<td>${vehicle.numberOfSeats}</td>
 							<td><a href="ride/${ride.id}">rides</a></td>
 							<td><form action="/deleteVehicle/${vehicle.id}" method="post">
-										<input class="form-control" name = "email" type="hidden" value = ${email}>
+										<input class="form-control" name = "email" type="hidden" value = "${email}">
 										<input type="submit" value="delete">
 									</form></td>
 					</c:forEach>
@@ -63,15 +66,40 @@
 			</div>
 			<div class="col-md-offset-1 col-md-4"
 				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
-				<h2>Subscribe for a ride</h2>
-				<p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in.</p>
-				<p>
-					<a class="btn btn-primary btn-default" href="#" role="button">View
-						details &raquo;</a>
-				</p>
-			</div>
-
-			<button type="submit" class="btn btn-default">UnSubscribe Your Ride</button>
+				<c:forEach var="post" items="${allRides}">
+					<div class="row">
+						<ul>
+							<li>
+								<p>Departure : ${post.departure}</p>
+								<p>Destination : ${post.destination}</p>
+								<p>price : ${post.price}USD Available Seat:</p>
+								<P>Status : ${post.status}</P>
+								<p>Vehicle :</p>
+								<P>Posted By : ${post.offeredBy}</P>
+							</li>
+						</ul>
+						<div>
+							<a class="btn btn-primary btn-default"
+								href="/ride/apply/${post.id}" role="button">Apply</a>
+						</div>
+						<div>
+							<form method="post" action="../comment">
+								<textarea rows="3" cols="50" name="comment"
+									placeholder="write comment here ...."></textarea>
+								<div>
+									<input class="form-control" name="email" type="hidden"
+										value="${email}" >
+								</div>
+								<div>
+									<input class="form-control" name="id" type="hidden"
+										value="${post.id}">
+								</div>
+								<button type="submit" class="btn btn-secondary btn-lg">post</button>
+							</form>
+						</div>
+						<hr>
+					</div>
+				</c:forEach>
 
 
 		</div>

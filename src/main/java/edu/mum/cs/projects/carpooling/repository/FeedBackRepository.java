@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
-import edu.mum.cs.projects.carpooling.domain.entity.Vehicle;
 
 @Repository
 public interface FeedBackRepository extends JpaRepository<FeedBack, Integer> {
@@ -17,6 +16,7 @@ public interface FeedBackRepository extends JpaRepository<FeedBack, Integer> {
 	
 	List<FeedBack> findByUser(User user);
 	
-	List<FeedBack> findByRide(Ride user);
+	List<FeedBack> findByRide(Ride ride);
+
 }
 

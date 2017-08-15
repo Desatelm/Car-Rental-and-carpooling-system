@@ -11,6 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
@@ -25,6 +27,7 @@ public class Vehicle {
 	String color;
 	int numberOfSeats;
 
+	@JsonBackReference
 	@OneToMany(mappedBy = "vehicle")
 	List<Ride> ride = new ArrayList<>();
 

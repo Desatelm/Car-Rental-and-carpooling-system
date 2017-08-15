@@ -31,7 +31,7 @@
 						</div>
 						<div>
 							vehicle:<select name="model" class="form-control" id="cars">
-								<option>bla</option>
+								<!-- <option>bla</option> -->
 								<c:forEach var="car" items="${userVehicle }">
 									<option value="${car.id }" data-seats="${car.numberOfSeats}">${car.make},${car.model},
 										${car.type}</option>
@@ -138,7 +138,8 @@
 				let seats = $(this).val();
 				for (let i = 0; i < seats; i++) {
 					let option = $('<option>', {
-						'text' : i + 1
+						'text' : i + 1 ,
+						'value' : i + 1
 					});
 					$('#noOfSeats').append(option);
 				}

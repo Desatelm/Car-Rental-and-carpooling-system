@@ -44,6 +44,7 @@ public class SearchController {
 		} catch (ParseException e) {
 			return "redirect:/search";
 		}
+
 		List<Ride> rides = rideservice.findByRideF(departure, destination, startDate, seat);
 		model.addAttribute("rides", rides);
 		model.addAttribute("departure", departure);
