@@ -1,16 +1,11 @@
 package edu.mum.cs.projects.carpooling.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -47,9 +42,9 @@ public class RideController {
 
 	@PostMapping(value = "/registed")
 	public String processRide(Ride ride, @RequestParam String email, @RequestParam String model, Model mod) {
-      
+
 		User user = userService.getUserByemail(email);
-		List<Vehicle> vehicles = user.getVicheles();
+		List<Vehicle> vehicles = user.getVehicles();
 		mod.addAttribute("allRides", rideService.getAllRides());
 		for (Vehicle vehicle : vehicles) {
 			if (vehicle.getModel().equals(model)) {
@@ -58,21 +53,42 @@ public class RideController {
 		}
 		ride.setStatus(RideStatus.ONGOING);
 		ride.setUser(user);
+		ride.setOfferedBy(user.getEmailAddress());
 		user.setRide(ride);
 		userService.createUser(user);
 		rideService.createRide(ride);
 		return "RidePostRegistration";
 	}
 
-	@GetMapping(value="/apply/{id}")
+	@GetMapping(value = "/apply/{id}")
 	public String applyForRide(@PathVariable("id") Integer id, Model model) {
-		System.out.println("*******************"+id);
-		Ride ride= rideService.getRideById(id);
-		System.err.println("***********************************************************************************" + ride.getDeparture());
-		//List<User> user= ride.getUser();@PathVariable("id")
-		model.addAttribute("ride",ride );
+
+		Ride ride = rideService.getRideById(id);
+		User user = userService.getUserByemail(ride.getOfferedBy());
+
+		/*
+		 * List<String> seatOptions = new ArrayList<>(); for (int i = 1; i <=
+		 * ride.getNoSeat(); i++) { seatOptions.add("I want to book" + i +
+		 * "seat"); } model.addAttribute("seatOption", seatOptions);
+		 */
+		// List<User> user= ride.getUser();@PathVariable("id")
+		model.addAttribute("ride", ride);
+		model.addAttribute("user", user);
 		return "ride-apply";
-	}	
+	}
+
+	@PostMapping(value = "/booked")
+	public String bookRide(@RequestParam String email, @RequestParam int postId, @RequestParam int seat) {
+
+		User user = userService.getUserByemail(email);
+		Ride ride = rideService.getRideById(postId);
+		System.out.println("*******************" + user + "  and   " + ride);
+		user.setRide(ride);
+		ride.setNoSeat(ride.getNoSeat() - seat);
+		rideService.createRide(ride);
+		System.out.println("*******************");
+		return "redirect:/ride/registerform";
+	}
 	
 	@GetMapping("/offered")
 	public String offeredRides(Model model)
@@ -83,5 +99,5 @@ public class RideController {
 		
 		return "offeredride";
 	}
-	
+
 }

@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.transaction.annotation.Propagation;
 
 import edu.mum.cs.projects.carpooling.domain.entity.User;
+import edu.mum.cs.projects.carpooling.service.VehicleService;
 
 @Controller
-@Transactional(propagation = Propagation.SUPPORTS)
-
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class WelcomeController {
 	
-	
+	VehicleService vehicleService;
 	
 	@RequestMapping("/welcome")
 	public String dashboard(Model model, HttpSession session) {
@@ -24,7 +24,7 @@ public class WelcomeController {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		session.setAttribute("username", user.getLastName());
 		session.setAttribute("email", user.getEmailAddress());
-		session.setAttribute("vehicle", user.getVicheles());
+		model.addAttribute("vehicle", user.getVehicles());
 		session.setAttribute("myRidePost", user.getRide());
 		
 

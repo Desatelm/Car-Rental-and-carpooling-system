@@ -30,6 +30,9 @@ public class Ride {
 
 	@Column(name = "departure_time")
 	String departureTime;
+	
+	@Column(name = "offered_by")
+	String offeredBy;
 
 	@Column(name = "price")
 	double price;
@@ -146,6 +149,14 @@ public class Ride {
 
 	public void setWaitingTime(String waitingTime) {
 		this.waitingTime = waitingTime;
+	}
+
+	public String getOfferedBy() {
+		return offeredBy;
+	}
+
+	public void setOfferedBy(String offeredBy) {
+		this.offeredBy = offeredBy;
 	}
 
 	public Vehicle getVehicle() {

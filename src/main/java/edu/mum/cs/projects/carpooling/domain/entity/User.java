@@ -114,7 +114,7 @@ public class User {
 		this.ride = user.getRide();
 		this.sex = user.getSex();
 		this.roles = user.getRoles();
-		this.vehicles = user.getVicheles();		
+		this.vehicles =user.getVehicles();		
 		
 	}
 
@@ -218,13 +218,7 @@ public class User {
 		this.password = password;
 	}
 
-	public List<Vehicle> getVicheles() {
-		return vehicles;
-	}
-
-	public void setVicheles(List<Vehicle> vehicles) {
-		this.vehicles = vehicles;
-	}	
+	
 
 	public List<Ride> getRide() {
 		return ride;

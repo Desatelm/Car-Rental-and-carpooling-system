@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<div class="col">
-		<h3>Ride Information</h3>
+			<h3>Ride Information</h3>
 			<P>Leaving from : ${ride.departure}</P>
 			<P>Destination :${ride.destination}</P>
 			<P>When :${ride.departureDate}</p>
@@ -13,17 +13,21 @@
 		<div class="col">
 			<div class="row">
 				<h3>Driver Information</h3>
-				<P>Name :</P>
-				<P>Age :</P>
+				<P>Name :${user.firstName} ${user.lastName}</P>
 				<P></P>
 			</div>
 			<div class="row">
 				<h3>Select Number of seats</h3>
-				<select>
-					<option>1 seat</option>
-					<option>2 seat</option>
-				</select>
-				<button>Book and Make a Payment</button>
+				<form method="post" action="../booked">
+					<select name= "seat">
+						<c:forEach var="i" begin="1" end="${ride.noSeat }">
+							<option value="${i }">I want to book ${i} seat</option>
+						</c:forEach>
+					</select> <input class="form-control" name="email" type="hidden"
+						value=${email} > <input class="form-control" name="postId"
+						type="hidden" value=${ride.id} > 
+						<button type="submit" class="btn btn-secondary btn-lg">Book and Make payment</button>
+				</form>
 			</div>
 		</div>
 	</div>
