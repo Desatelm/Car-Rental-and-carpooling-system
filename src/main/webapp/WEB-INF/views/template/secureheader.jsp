@@ -63,8 +63,10 @@
 									class="glyphicon glyphicon-search form-control-feedback"></span>
 
 							</div>
+
 						</form> 
-						<a href="/ride/offered">See booked Rides</a>
+						
+						<a href="/ride/booked">My Booked Rides</a>
 					</li>
 				</sec:authorize>
 			</ul>

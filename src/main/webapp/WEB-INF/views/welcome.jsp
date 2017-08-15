@@ -6,9 +6,12 @@
 	<div class="">
 
 		<h3>Welcome ${lastName} !!!</h3>
+		<div class="col-sm-3">.col-sm-3</div>
+  <div class="col-sm-6">.col-sm-6</div>
+  <div class="col-sm-3">.col-sm-3</div>
 
 		<div class="row" style="padding-top: 20px;">
-			<div class="col-md-offset-1 col-md-4 "
+			<div class=" col-md-3 "
 				style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
 				<h1>Car-Pooling</h1>
 				<p>This is a template for a simple marketing or informational.</p>
@@ -56,6 +59,9 @@
 							<td><a href="ride/${ride.id}">rides</a></td>
 							<td><form action="/deleteVehicle/${vehicle.id}" method="post">
 										<input class="form-control" name = "email" type="hidden" value =${email}/>
+
+										<input class="form-control" name = "email" type="hidden" value = "${email}">
+
 										<input type="submit" value="delete">
 									</form></td>
 					</c:forEach>
@@ -84,8 +90,8 @@
 								<textarea rows="3" cols="50" name="comment"
 									placeholder="write comment here ...."></textarea>
 								<div>
-									<input class="form-control" name="email" type="hidden"
-										value= ${email} >
+									<input class="form-control" name="email" type="hidden" value= "${email}" />
+
 								</div>
 								<div>
 									<input class="form-control" name="id" type="hidden"

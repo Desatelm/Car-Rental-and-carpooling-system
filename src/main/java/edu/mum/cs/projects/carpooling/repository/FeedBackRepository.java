@@ -8,5 +8,4 @@ import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
 @Repository
 public interface FeedBackRepository extends JpaRepository<FeedBack, Integer> {
 
-	
 }
