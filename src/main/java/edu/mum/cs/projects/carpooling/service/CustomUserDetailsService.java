@@ -12,7 +12,6 @@ import edu.mum.cs.projects.carpooling.domain.entity.CustomUserDetails;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 
-
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 

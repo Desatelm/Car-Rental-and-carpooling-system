@@ -1,16 +1,16 @@
 package edu.mum.cs.projects.carpooling.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.util.Date;
 import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import edu.mum.cs.projects.carpooling.repository.RideRepository;
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
-import javax.transaction.Transactional;
 import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
-import edu.mum.cs.projects.carpooling.domain.entity.User;
+import edu.mum.cs.projects.carpooling.repository.RideRepository;
 
 @Service
 @Transactional

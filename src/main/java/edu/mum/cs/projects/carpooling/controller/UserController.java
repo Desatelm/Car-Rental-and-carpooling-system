@@ -25,63 +25,63 @@ import edu.mum.cs.projects.carpooling.service.UserService;
 public class UserController {
 	@Autowired
 	UserService userService;
-	
-	@Autowired	
+
+	@Autowired
 	RoleRepository roleRepository;
-	
+
 	@Autowired
 	NotificationService notificationService;
-	
+
 	@GetMapping(value = "/signup_page")
 	public String adduser(Model model) {
 		return "customer_registration";
 	}
-	
+
 	@PostMapping(value = "/signUp")
 	public String createUser(User user, Address address, @RequestParam String role) {
-		
-		Role role1 = roleRepository.findByRoleType(role);		
-				
+
+		Role role1 = roleRepository.findByRoleType(role);
+
 		user.setActive(1);
 		user.setAddress(address);
 		user.setRoles(role1);
 		userService.createUser(user);
-		try{
-		notificationService.sendNotification(user);
-		}
-		catch(MailException e){
+		try {
+			notificationService.sendNotification(user);
+		} catch (MailException e) {
 			System.err.println(e.getMessage());
 		}
 		return "redirect:/welcome";
 	}
-	
+
 	@PostMapping(value = "/update")
 	public String updateUser(User user, Address address, List<Vehicle> vehicles) {
-		User user1 = userService.getUser(user.getName()) ;
+		User user1 = userService.getUser(user.getName());
 		user1.setAddress(address);
-		user1.setVehicles(vehicles);	
+		user1.setVehicles(vehicles);
 		userService.createUser(user1);
 		return "redirect:/Confirmation";
 	}
-	
+
 	@PostMapping(value = "/getProfile")
 	public String getUserProfile(Model model, @RequestParam(value = "username") String username) {
 		User user = userService.getUser(username);
-	    model.addAttribute("user", user);		
+		model.addAttribute("user", user);
 		return "userProfile";
 	}
-	
+
 	@PostMapping(value = "/deactivate")
 	public String deactivateUser(User user) {
 		User user1 = userService.getUser(user.getName());
-		user1.setActive(0);			
+		user1.setActive(0);
 		userService.createUser(user1);
 		return "redirect:/home";
 	}
 
 	@PostMapping(value = "/removeUser")
-	public String deletUser(User user) {					
-		userService.deleteUser(user);;
+	public String deletUser(User user) {
+		userService.deleteUser(user);
+		;
 		return "redirect:/home";
 	}
 }

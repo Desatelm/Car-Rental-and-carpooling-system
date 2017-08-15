@@ -31,6 +31,7 @@ public class VehicleService {
 	}
 
 	public List<Vehicle> getVehicleByUser(User user) {
+
 		return vehicleRepository.findByUser(user);
 	}
 

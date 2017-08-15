@@ -23,7 +23,7 @@
     
      <div class="form-group col-lg-6">
     
-            <label class="col-lg-3 control-label"><a href="../getMessageForm/${email}">Message</a></label>
+            <label class="col-lg-3 control-label"><a href="../getMessageForm/${user.id}">Message</a></label>
             </div>
            
      <div class='container'>
