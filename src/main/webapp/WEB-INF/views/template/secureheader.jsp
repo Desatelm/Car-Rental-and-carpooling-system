@@ -22,14 +22,14 @@
 <link href="<c:url value="/static/css/custom.css"/>" rel="stylesheet">
 <link href="<c:url value="/static/css/jumbotron.css"/>" rel="stylesheet">
 <link href="<c:url value="/static/css/panels.css"/>" rel="stylesheet">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/static/js/user.js"/>"></script>
 
 <%-- <script src="<c:url value="/static/js/locationMap.js"/>"></script> --%>
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI42L7mYrE1udMiU98gNXDX8Qv=3.exp&sensor=false&libraries=places"></script>
 	
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 

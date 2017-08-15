@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
@@ -48,7 +49,7 @@ public class RideController {
 		System.err.println("*************************" + id);
 		System.err.println("*************************" +vehicleService.getVehicleByUser(userService.getUserByID(id)).size());
 		model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(id)));
-		model.addAttribute("allRides", rideService.getAllRides());
+		model.addAttribute("allRides", rideService.getAllRides());	
 		return "RidePostRegistration";
 	}
 
