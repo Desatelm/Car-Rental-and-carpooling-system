@@ -1,6 +1,7 @@
 package edu.mum.cs.projects.carpooling.controller;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,6 +20,7 @@ import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.domain.entity.Vehicle;
 import edu.mum.cs.projects.carpooling.service.RideService;
 import edu.mum.cs.projects.carpooling.service.UserService;
+import edu.mum.cs.projects.carpooling.service.VehicleService;
 
 @Controller
 @RequestMapping("ride")
@@ -29,25 +31,39 @@ public class RideController {
 	@Autowired
 	UserService userService;
 
+	@Autowired
+	VehicleService vehicleService;
+
 	/*
 	 * public RideController() { //allRides = rideService.getAllRides(); }
 	 */
 
 	@GetMapping(value = "/registerform")
-	public String showPostRideForm(Model model) {
+	public String showPostRideFormAll(Model model) {
+		
+		model.addAttribute("allRides", rideService.getAllRides());
+		return "RidePostRegistration";
+	}
+	
+	@GetMapping(value = "/registerform/{id}")
+	public String showPostRideForm(@PathVariable("id") Integer id, Model model) {
 
+		System.err.println("*************************" + id);
+		System.err.println("*************************" +vehicleService.getVehicleByUser(userService.getUserByID(id)).size());
+		model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(id)));
 		model.addAttribute("allRides", rideService.getAllRides());
 		return "RidePostRegistration";
 	}
 
 	@PostMapping(value = "/registed")
-	public String processRide(Ride ride, @RequestParam String email, @RequestParam String model, Model mod) {
+	public String processRide(Ride ride, @RequestParam String email, @RequestParam int model, Model mod) {
 
 		User user = userService.getUserByemail(email);
 		List<Vehicle> vehicles = user.getVehicles();
 		mod.addAttribute("allRides", rideService.getAllRides());
+		System.err.println("*************************" + model);
 		for (Vehicle vehicle : vehicles) {
-			if (vehicle.getModel().equals(model)) {
+			if (vehicle.getId() == model) {
 				ride.setVehicle(vehicle);
 			}
 		}

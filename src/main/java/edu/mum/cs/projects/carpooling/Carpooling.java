@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Computer Science Department</h1>
  * <p>
  * <p>
- * Run reports from here!
+ * Run App from here!
  * 
  */
 
@@ -17,6 +17,7 @@ public class Carpooling {
 
 	public static void main(String[] args) {
 		SpringApplication.run(Carpooling.class, args);
+
 	}
 
 }

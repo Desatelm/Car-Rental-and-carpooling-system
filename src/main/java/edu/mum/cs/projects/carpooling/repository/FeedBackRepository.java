@@ -1,0 +1,12 @@
+package edu.mum.cs.projects.carpooling.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
+
+@Repository
+public interface FeedBackRepository extends JpaRepository<FeedBack, Integer> {
+
+	
+}

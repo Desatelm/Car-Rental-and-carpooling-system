@@ -3,29 +3,34 @@ package edu.mum.cs.projects.carpooling.domain.entity;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "vehicle")
 public class Vehicle {
-	
+
 	@Id
 	@GeneratedValue
 	int id;
-	
+
 	String model;
 	String type;
-	String Make;	
+	String Make;
 	String color;
 	int numberOfSeats;
-	
-	@OneToMany(mappedBy="vehicle")
-	List<Ride> ride= new ArrayList<>();
-	
-	@ManyToOne(cascade=CascadeType.PERSIST)
+
+	@OneToMany(mappedBy = "vehicle")
+	List<Ride> ride = new ArrayList<>();
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	User user;
 
-	
 	public Vehicle() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -68,7 +73,6 @@ public class Vehicle {
 		this.type = type;
 	}
 
-
 	public String getMake() {
 		return Make;
 	}
@@ -108,5 +112,5 @@ public class Vehicle {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
+
 }

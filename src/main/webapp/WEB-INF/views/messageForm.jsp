@@ -24,7 +24,7 @@
 					 style="margin-bottom: 25px;" rows="6">	
 			  </textarea>
 			  
-			  <input class="form-control" name = "senderEmail" type="hidden" value = ${senderEmail}>			
+			  <input class="form-control" name = "recieverId" type="hidden" value = ${recieverId}>			
 			  <input class="form-control" name = "email" type="hidden" value = ${email}>
 			</div>			
 			<label class="col-md-3 control-label"></label>
