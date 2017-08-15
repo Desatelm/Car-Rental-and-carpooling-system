@@ -6,6 +6,9 @@ import java.util.List;
 import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -70,5 +73,15 @@ public class RideController {
 		model.addAttribute("ride",ride );
 		return "ride-apply";
 	}	
-
+	
+	@GetMapping("/offered")
+	public String offeredRides(Model model)
+	{
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		List<Ride> rides = rideService.getRideByEmail(user.getEmailAddress());
+		model.addAttribute("rides", rides);
+		
+		return "offeredride";
+	}
+	
 }

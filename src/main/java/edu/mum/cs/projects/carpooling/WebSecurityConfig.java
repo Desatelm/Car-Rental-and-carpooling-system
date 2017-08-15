@@ -34,8 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		http.authorizeRequests().antMatchers("/welcome")
-				.access("hasRole('RIDER') or hasRole('DRIVER')").and().csrf()
+		http.authorizeRequests()
+	.antMatchers("/welcome")
+			.access("hasRole('RIDER') or hasRole('DRIVER')")
+				.and().csrf()
 				.disable().formLogin().loginPage("/login").usernameParameter("username").passwordParameter("password")
 				.defaultSuccessUrl("/welcome").and().exceptionHandling().accessDeniedPage("/Access_Denied");
 	}

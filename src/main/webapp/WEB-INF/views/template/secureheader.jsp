@@ -78,7 +78,7 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/registerform">Post Ride</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/ride/registerform">See My Ride Offers</a></li>
+							<li><a href="/ride/offered">See My Ride Offers</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/registerform">See Seats Booked</a></li>
 						</ul></li>

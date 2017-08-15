@@ -56,4 +56,7 @@ public class SearchController {
 		public String getSearchDataG() {
 			return "redirect:/search";
 		}
+		
+		//@RequestMapping(path="/offeredride", method= RequestMethod.GET)	
+		
 }

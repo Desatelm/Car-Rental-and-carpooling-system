@@ -29,4 +29,5 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
 			String departure, String destination, Date date, int seat);
 
 	public List<Ride> findByUserId(int id);
+	public List<Ride> findByUser_emailAddress(String name);
 }
