@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.stereotype.Component;
 
+
 import edu.mum.cs.projects.carpooling.domain.entity.MessageBox;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
+import edu.mum.cs.projects.carpooling.util.EmailService;
 
 
 @Aspect
@@ -19,6 +21,9 @@ public class AspectTrace {
 	NotificationService notificationService;	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	EmailService emailService;
 	
 	@After(" execution(* edu.mum.cs.projects.carpooling.service.Receiver.receiveMessage(..)) && args(msg)")
 	public void traceMethod(JoinPoint jointPoint, MessageBox msg){
@@ -32,6 +37,13 @@ public class AspectTrace {
 		}
 		 System.out.println("Message has been sent from  Email Address" + msg.getSenderEmail() );
 		
+	}
+	
+	@After("execution(* edu.mum.cs.projects.carpooling.service.RideService.cancelRide(..))&& args(userId,rideId)")
+	public void traceMethodForsendingEmail(int userId, int rideId) {
+		//MessageBox msg;
+		//User user = userService.getUserByID(msg.getReceiverId());
+		emailService.sendEmail(userService.getUserByID(userId).getEmailAddress(), "Message", "Welcome");
 	}
 
 }
