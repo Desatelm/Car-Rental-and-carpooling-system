@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -20,10 +21,17 @@ public class Vehicle {
 	@Id
 	@GeneratedValue
 	int id;
-
+	
+	@NotNull(message = "Required")
 	String model;
+	
+	@NotNull(message = "Required")
 	String type;
-	String Make;
+	
+	@NotNull(message = "Required")
+	String make;
+	
+	@NotNull(message = "Required")
 	String color;
 	int numberOfSeats;
 
@@ -45,7 +53,7 @@ public class Vehicle {
 		this.id = id;
 		this.model = model;
 		this.type = type;
-		Make = make;
+		this.make = make;
 		this.color = color;
 		this.numberOfSeats = numberOfSeats;
 		this.ride = ride;
@@ -77,11 +85,11 @@ public class Vehicle {
 	}
 
 	public String getMake() {
-		return Make;
+		return make;
 	}
 
 	public void setMake(String make) {
-		Make = make;
+		this.make = make;
 	}
 
 	public String getColor() {

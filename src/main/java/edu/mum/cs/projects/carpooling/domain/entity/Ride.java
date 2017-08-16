@@ -19,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "ride")
@@ -29,34 +32,41 @@ public class Ride {
 	@Column(name = "ride_id")
 	int id;
 
+	@NotNull(message="Required")
 	@Column(name = "departure_place")
 	String departure;
 
+	@NotNull(message="Required")
 	@Column(name = "destination_place")
 	String destination;
 
 	@Column(name = "pickup_place")
 	String pickUp;
 
+	@NotNull(message="Required")
 	@Column(name = "departure_date")
-	@Temporal(TemporalType.DATE)
-	Date departureDate;
+	String departureDate;
 
+	@NotNull(message="Required")
 	@Column(name = "departure_time")
 	String departureTime;
 
 	@Column(name = "offered_by")
 	String offeredBy;
 
+	@NotNull(message="Required")
+	@Min(value=10 ,message="Price must be greater than $10")
 	@Column(name = "price")
 	double price;
 
+	@NotNull(message="Required")
 	@Column(name = "seat_no")
 	int noSeat;
 
 	@Enumerated
 	RideStatus status;
 
+	@NotNull(message="Required")
 	@Column(name = "waiting_time")
 	String waitingTime;
 
@@ -66,7 +76,7 @@ public class Ride {
 	@OneToMany(mappedBy = "ride", cascade = CascadeType.PERSIST)
 	List<FeedBack> feedbacks = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "user_ride", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ride_id"))
 	List<User> user = new ArrayList<>();
 
@@ -117,11 +127,11 @@ public class Ride {
 		this.pickUp = pickUp;
 	}
 
-	public Date getDepartureDate() {
+	public String getDepartureDate() {
 		return departureDate;
 	}
 
-	public void setDepartureDate(Date departureDate) {
+	public void setDepartureDate(String departureDate) {
 		this.departureDate = departureDate;
 	}
 
@@ -188,6 +198,10 @@ public class Ride {
 	public void setFeedbacks(FeedBack feedbacks) {
 		this.feedbacks.add(feedbacks);
 	}
+	
+	public void setFeedbacks(List<FeedBack> feedbacks) {
+		this.feedbacks= feedbacks;
+	}
 
 	public List<User> getUser() {
 		return user;
@@ -196,5 +210,9 @@ public class Ride {
 	public void setUser(User user) {
 		this.user.add(user);
 	}
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
+	
 
 }
