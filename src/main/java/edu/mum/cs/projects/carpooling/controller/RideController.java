@@ -148,7 +148,37 @@ public class RideController {
 
 
 	}	
-
+	@PostMapping("/cancel-booking/{id}")		 
+ 	public String cancelRides(@PathVariable("id") int id)		 
+ 	{		
+ 		User user2 = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
+ 		User user = userService.getUserByemail(user2.getEmailAddress());		 
+ 				 
+ 		List<Ride> rides = rideService.getRideByEmail(user.getEmailAddress());		 
+ 		List<Ride> ridess = new ArrayList<>();		 
+ 		List<User> users = rideService.getRideById(id).getUser();		
+ 		List<User> userss = new ArrayList<>();		
+ 		for(Ride ride: rides) {		
+ 			if(!(id ==ride.getId())) {		
+ 				ridess.add(ride);		
+ 			}		
+ 		}		
+ 		for(User user1: users) {		
+ 			if(!(user.equals(user1))) {		
+ 				userss.add(user1);		
+ 			}		
+ 		}	
+ 		
+ 		user.setRides(ridess);
+ 		
+ 		Ride ridetemp = rideService.getRideById(id);		
+ 		ridetemp.setUser(userss);	
+ 		
+ 		rideService.createRide(ridetemp);	 				
+ 		userService.createUser(user);		
+ 				
+ 		return "redirect:/ride/myRides";		
+  	}
 
 
 	@InitBinder

@@ -21,7 +21,7 @@
 				Ride</button>
 		</form>
 	</div>
-	<!-- <div class="row" style="padding-top: 20px;">
+	<div class="row" style="padding-top: 20px;">
 		<div class="col-md-offset-1 col-md-4 "
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
 			<h1>Car-Pooling System</h1>
@@ -101,7 +101,7 @@ Placed at the end of the document so the pages load faster
 	window.jQuery
 			|| document
 					.write('<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"><\/script>')
-</script> -->
+</script>
 <script src="<c:url value="/static/js/custome.js"/>"></script>
 <script src="<c:url value="/static/js/bootstrap.min.js"/>"></script>
 

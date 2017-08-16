@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.domain.entity.Vehicle;
+import edu.mum.cs.projects.carpooling.service.RideService;
 import edu.mum.cs.projects.carpooling.service.UserService;
 import edu.mum.cs.projects.carpooling.service.VehicleService;
 
@@ -35,6 +37,9 @@ public class VehicleController {
 
 	@Autowired
 	VehicleService vehicleService;
+	
+	@Autowired
+	RideService rideService;
 
 	@Autowired
 	UserService userService;
@@ -44,18 +49,16 @@ public class VehicleController {
 		model.addAttribute("vehicle", new Vehicle());
 		return "carRegister";
 	}
-
-	@GetMapping(value = "/welcom")
-	public String homepage(Model model) {
-		return "welcome";
-	}
+	
 
 	@PostMapping(value = "/addVehicle")
 	public String addVehicle(@Valid @ModelAttribute("vehicle") Vehicle vehicle, BindingResult bindingResult,
 			@RequestParam String email, Model model, RedirectAttributes redirectAttrs) {
 
 		if (bindingResult.hasErrors()) {
-			return "carRegister";
+			redirectAttrs.addFlashAttribute("org.springframework.validation.BindingResult.register", bindingResult);
+			redirectAttrs.addFlashAttribute("vehicle", vehicle);
+			return "redirect:/car_registrationForm";
 		}
 
 		User user = userService.getUserByemail(email);
@@ -64,8 +67,8 @@ public class VehicleController {
 		vehicles.add(vehicle);
 		vehicleService.creatVehicle(vehicle);
 		model.addAttribute("vehicle", user.getVehicles());
-		// redirectAttrs.addFlashAttribute("vehicle", user.getVehicles());
-		return "welcome";
+		//redirectAttrs.addFlashAttribute("vehicle", user.getVehicles());
+		return "redirect:/welcome";
 	}
 
 	@PostMapping(value = "/deleteVehicle/{id}")
@@ -73,10 +76,13 @@ public class VehicleController {
 			RedirectAttributes redirectAttrs) {
 		Vehicle vehicle = vehicleService.getVehicle(id);
 		User user = userService.getUserByemail(email);
+		vehicle.setUser(null);
 		user.getVehicles().remove(vehicle);
-		vehicleService.removeVehicle(vehicle);
+		
+		userService.createUser(user);
+		vehicleService.creatVehicle(vehicle);
 		model.addAttribute("vehicle", user.getVehicles());
-		redirectAttrs.addFlashAttribute("vehicle", user.getVehicles());
+		//redirectAttrs.addFlashAttribute("vehicle", user.getVehicles());
 		return "redirect:/welcome";
 	}
 

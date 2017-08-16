@@ -43,11 +43,11 @@ public class Ride {
 	@Column(name = "pickup_place")
 	String pickUp;
 
-	@NotNull(message="Required")
+	
 	@Column(name = "departure_date")
 	String departureDate;
 
-	@NotNull(message="Required")
+	
 	@Column(name = "departure_time")
 	String departureTime;
 

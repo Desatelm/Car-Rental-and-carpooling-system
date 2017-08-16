@@ -16,7 +16,7 @@
 					<p>e-mail:${Principal.emailAddress}</p>					
 
 				</div>
-
+               <sec:authorize access="hasRole('ROLE_DRIVER')">
 				<div
 					style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px; margin-top: 20px;">
 					<h2>List Of cars</h2>
@@ -91,8 +91,8 @@
 								</div>
 
 								<div>
-									vehicle :(*) <select name="model" class="form-control"
-										id="cars">
+									vehicle :(*) <select name="model" class="form-control" id="cars">
+										
 										<c:forEach var="car" items="${userVehicle }">
 											<option value="${car.id }" data-seats="${car.numberOfSeats}">${car.make},${car.model},
 												${car.type}</option>
@@ -103,7 +103,8 @@
 								<div class="form-row">
 									<div class="form-group col-md-6">
 										Number of Seats :(*)
-										<form:select class="form-control" path="noSeat" id="noOfSeats"></form:select>
+										<form:select class="form-control" path="noSeat" id="noOfSeats">
+										</form:select>
 										<form:errors path="noSeat" cssClass="error"></form:errors>
 									</div>
 									<div class="form-group col-md-6">
@@ -133,6 +134,7 @@
 						</fieldset>
 					</form:form>
 				</div>
+				</sec:authorize>
 			</div>
 			<div class="col-md-offset-1 col-md-6">
 				<div
@@ -149,7 +151,7 @@
 										<p>Destination : ${post.destination}</p>
 										<p>price : ${post.price}USD Available Seat:</p>
 										<P>Status : ${post.status}</P>
-										<p>Vehicle :</p>
+										
 										<P>Posted By : ${post.offeredBy}</P>
 									</li>
 								</ul>
@@ -199,6 +201,34 @@
 	</div>
 	<div class="container pull-left"></div>
 </div>
+<script>
+		function initialize() {
+			var departure = document.getElementById("departure");
+			var destination = document.getElementById("destination");
+			var autocomplete = new google.maps.places.Autocomplete(departure);
+			var autocomplete2 = new google.maps.places.Autocomplete(destination);
+
+		}
+		google.maps.event.addDomListener(window, 'load', initialize);
+
+		$(document).ready(function() {
+			$('#cars').on('change', function() {
+
+				let seats = $(this).val();
+				let option = "";
+				for (let i = 0; i < seats; i++) {
+					option = $('<option>', {
+						'text' : i + 1,
+						'value' : i + 1
+					});
+					$('#noOfSeats').append(option);
+				}
+			})
+		})
+	</script>
+	<script type="text/javascript"
+		src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAmMANqWLDs12mTUiiX4SuLJeftpYyQdgk&libraries=places"></script>
+
 
 
 <%@include file="/WEB-INF/views/template/footer.jsp"%>
