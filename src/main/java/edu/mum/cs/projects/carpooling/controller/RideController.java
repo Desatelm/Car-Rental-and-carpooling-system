@@ -2,11 +2,18 @@ package edu.mum.cs.projects.carpooling.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,11 +44,12 @@ public class RideController {
 	 * public RideController() { //allRides = rideService.getAllRides(); }
 	 */
 
-	@GetMapping(value = "/registerform")
+	@GetMapping(value = "/registration")
 	public String showPostRideFormAll(Model model) {
 
 		model.addAttribute("allRides", rideService.getAllRides());
-		return "RidePostRegistration";
+		model.addAttribute("ride",new Ride());
+		return "ride_registration";
 	}
 
 	/*
@@ -53,17 +61,23 @@ public class RideController {
 	 * "RidePostRegistration"; }
 	 */
 
-	@GetMapping(value = "/registerform/{id}")
+	@GetMapping(value = "/registration/{id}")
 	public String showPostRideForm(@PathVariable("id") Integer id, Model model) {
 
-        model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(id)));
+		model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(id)));
 		model.addAttribute("allRides", rideService.getAllRides());
-		return "RidePostRegistration";
+		model.addAttribute("ride",new Ride());
+		return "ride_registration";
 	}
 
-	@PostMapping(value = "/registed")
-	public String processRide(Ride ride, @RequestParam String email, @RequestParam int model, Model mod) {
+	@PostMapping(value = "/registration")
+	public String processRide(@Valid @ModelAttribute ("ride")Ride ride, BindingResult bindingResult, @RequestParam String email,
+			@RequestParam int model, Model mod) {
 
+		System.err.println(" ________________________>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>__________" + model);
+		if (bindingResult.hasErrors()) {
+			return "ride_registration";
+		}
 		User user = userService.getUserByemail(email);
 		List<Vehicle> vehicles = user.getVehicles();
 		mod.addAttribute("allRides", rideService.getAllRides());
@@ -79,7 +93,8 @@ public class RideController {
 		user.setRide(ride);
 		userService.createUser(user);
 		rideService.createRide(ride);
-		return "RidePostRegistration";
+		mod.addAttribute("message", "Successfully register a ride");
+		return "confrimation_page";
 	}
 
 	@GetMapping(value = "/apply/{id}")
@@ -94,8 +109,8 @@ public class RideController {
 	}
 
 	@PostMapping(value = "/booked")
-	public String bookRide(@RequestParam String email, @RequestParam int postId,@RequestParam int seat) {
-        		
+	public String bookRide(@RequestParam String email, @RequestParam int postId, @RequestParam int seat) {
+
 		User user = userService.getUserByemail(email);
 		Ride ride = rideService.getRideById(postId);
 		user.setRide(ride);
@@ -117,9 +132,15 @@ public class RideController {
 
 	@GetMapping("/booked")
 	public String bookedRides(Model model) {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		model.addAttribute("rides", user.getRide());
 		return "offeredride";
+	}
+
+	@InitBinder
+	public void initBinder(WebDataBinder dataBinder) {
+		StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+		dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
 	}
 
 }

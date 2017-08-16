@@ -19,6 +19,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ride")
@@ -29,34 +34,46 @@ public class Ride {
 	@Column(name = "ride_id")
 	int id;
 
+	@NotNull(message="Required")
 	@Column(name = "departure_place")
 	String departure;
 
+	@NotNull(message="Required")
 	@Column(name = "destination_place")
 	String destination;
 
 	@Column(name = "pickup_place")
 	String pickUp;
 
+	@NotNull(message="Required")
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	@Column(name = "departure_date")
 	@Temporal(TemporalType.DATE)
 	Date departureDate;
 
+	@NotNull(message="Required")
 	@Column(name = "departure_time")
 	String departureTime;
 
 	@Column(name = "offered_by")
 	String offeredBy;
 
+	@NotNull(message="Required")
+	//@Size(min=10,message="Price must be greater than $10")
 	@Column(name = "price")
 	double price;
 
+	@NotNull(message="Required")
 	@Column(name = "seat_no")
 	int noSeat;
+	
+	@Transient
+	int model;
 
 	@Enumerated
 	RideStatus status;
 
+	@NotNull(message="Required")
 	@Column(name = "waiting_time")
 	String waitingTime;
 
@@ -195,6 +212,14 @@ public class Ride {
 
 	public void setUser(User user) {
 		this.user.add(user);
+	}
+	
+	public int getModel() {
+		return model;
+	}
+
+	public void setModel(int model) {
+		this.model = model;
 	}
 
 }

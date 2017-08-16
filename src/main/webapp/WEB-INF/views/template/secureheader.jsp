@@ -22,6 +22,7 @@
 <link href="<c:url value="/static/css/custom.css"/>" rel="stylesheet">
 <link href="<c:url value="/static/css/jumbotron.css"/>" rel="stylesheet">
 <link href="<c:url value="/static/css/panels.css"/>" rel="stylesheet">
+<link href="<c:url value="/static/css/error.css"/>" rel="stylesheet">
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/static/js/user.js"/>"></script>
@@ -77,7 +78,7 @@
 							<li><a href="#"></a></li>
 							<li><a href="../car_registrationForm">AddCar</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/ride/registerform/${id}">Post Ride</a></li>
+							<li><a href="/ride/registration/${id}">Post Ride</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/offered">See My Ride Offers</a></li>
 							<li role="separator" class="divider"></li>

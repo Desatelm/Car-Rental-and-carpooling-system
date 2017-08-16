@@ -1,4 +1,5 @@
 <%@include file="/WEB-INF/views/template/secureheader.jsp"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <title>sign up</title>
 <link rel="stylesheet"
@@ -18,25 +19,25 @@
     <div class='container'>
     <h3>Customer Registration:</h3>
     <div class='container well col-md-8'>
-	<form action="../signUp" method="post" class="form-horizontal">
+	<form:form  action="../signUp" method="post" class="form-horizontal">
 		
 		   <div class="form-group">
             <label class="col-lg-3 control-label">User Name:</label>
             <div class="col-lg-6">
-              <input class="form-control" name = "name" type="text" >
+              <form:input class="form-control" path = "name" type="text" />
             </div></div>
             
           <div class="form-group">
             <label class="col-lg-3 control-label">First name:</label>
             <div class="col-lg-6">
-              <input class="form-control" name = "firstName" type="text" >
+             <form:input class="form-control" path = "firstName" type="text" />
             </div>
 	        </div>
 	        
 	        <div class="form-group">
             <label class="col-lg-3 control-label">Last name:</label>
             <div class="col-lg-6">
-              <input class="form-control" name = "lastName" type="text" >
+             <form:input class="form-control" path = "lastName" type="text" />
             </div>
 	        </div>
 	        
@@ -98,7 +99,7 @@
               <input type="submit" class="btn btn-primary" value="Create Account">
               </div>
             </div>
-	</form>
+	</form:form>
 	</div>
 </div>
 
