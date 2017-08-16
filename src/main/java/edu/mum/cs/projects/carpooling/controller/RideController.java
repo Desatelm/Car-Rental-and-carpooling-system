@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
@@ -40,11 +39,8 @@ public class RideController {
 	@Autowired
 	VehicleService vehicleService;
 
-	/*
-	 * public RideController() { //allRides = rideService.getAllRides(); }
-	 */
 
-	@GetMapping(value = "/registration")
+	@GetMapping(value = "/registerform")
 	public String showPostRideFormAll(Model model) {
 
 		model.addAttribute("allRides", rideService.getAllRides());
@@ -52,14 +48,7 @@ public class RideController {
 		return "ride_registration";
 	}
 
-	/*
-	 * @GetMapping(value = "/registerform") public String get(Model model) {
-	 * 
-	 * RestTemplate restTemp = new RestTemplate(); List <Ride> rides =
-	 * (List<Ride>) restTemp.getForObject("http://localhost:9090/Rest/rides",
-	 * ArrayList.class); model.addAttribute("allRides",rides); return
-	 * "RidePostRegistration"; }
-	 */
+	
 
 	@GetMapping(value = "/registration/{id}")
 	public String showPostRideForm(@PathVariable("id") Integer id, Model model) {
@@ -80,8 +69,7 @@ public class RideController {
 		}
 		User user = userService.getUserByemail(email);
 		List<Vehicle> vehicles = user.getVehicles();
-		mod.addAttribute("allRides", rideService.getAllRides());
-		System.err.println("*************************" + model);
+		mod.addAttribute("allRides", rideService.getAllRides());		
 		for (Vehicle vehicle : vehicles) {
 			if (vehicle.getId() == model) {
 				ride.setVehicle(vehicle);
@@ -93,8 +81,11 @@ public class RideController {
 		user.setRide(ride);
 		userService.createUser(user);
 		rideService.createRide(ride);
-		mod.addAttribute("message", "Successfully register a ride");
-		return "confrimation_page";
+
+		//mod.addAttribute("message", "Successfully register a ride");
+		
+		return "redirect:/welcome";
+
 	}
 
 	@GetMapping(value = "/apply/{id}")
@@ -116,26 +107,22 @@ public class RideController {
 		user.setRide(ride);
 		ride.setUser(user);
 		ride.setNoSeat(ride.getNoSeat() - seat);
+		
 		rideService.createRide(ride);
 		userService.createUser(user);
-		return "redirect:/ride/registerform";
+		return "redirect:/welcome";
 	}
 
-	@GetMapping("/offered")
+	@GetMapping("/myRides")
 	public String offeredRides(Model model) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Ride> rides = rideService.getRideByEmail(user.getEmailAddress());
 		model.addAttribute("rides", rides);
 
 		return "offeredride";
-	}
 
-	@GetMapping("/booked")
-	public String bookedRides(Model model) {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		model.addAttribute("rides", user.getRide());
-		return "offeredride";
-	}
+	}	
+
 
 	@InitBinder
 	public void initBinder(WebDataBinder dataBinder) {

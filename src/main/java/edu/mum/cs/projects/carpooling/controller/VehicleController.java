@@ -38,25 +38,27 @@ public class VehicleController {
 	}
 
 	@PostMapping(value = "/addVehicle")
-	public String addVehicle(Vehicle vehicle, @RequestParam String email, RedirectAttributes redirectAttrs) {
+	public String addVehicle(Vehicle vehicle, @RequestParam String email, Model model, RedirectAttributes redirectAttrs) {
 
 		User user = userService.getUserByemail(email);
 		List<Vehicle> vehicles = user.getVehicles();
 		vehicle.setUser(user);
 		vehicles.add(vehicle);
 		vehicleService.creatVehicle(vehicle);
-		redirectAttrs.addFlashAttribute("vehicle", user.getVehicles());
-		return "redirect:/welcom";
+		model.addAttribute("vehicle", user.getVehicles());
+		//redirectAttrs.addFlashAttribute("vehicle", user.getVehicles());
+		return "welcome";
 	}
 
 	@PostMapping(value = "/deleteVehicle/{id}")
-	public String deleteVehicle(@PathVariable int id, @RequestParam String email, RedirectAttributes redirectAttrs) {
+	public String deleteVehicle(@PathVariable int id, @RequestParam String email, Model model,RedirectAttributes redirectAttrs) {
 		Vehicle vehicle = vehicleService.getVehicle(id);
 		User user = userService.getUserByemail(email);
 		user.getVehicles().remove(vehicle);
 		vehicleService.removeVehicle(vehicle);
+		model.addAttribute("vehicle", user.getVehicles());
 		redirectAttrs.addFlashAttribute("vehicle", user.getVehicles());
-		return "redirect:/welcom";
+		return "redirect:/welcome";
 	}
 
 }

@@ -32,6 +32,8 @@ public interface RideRepository extends JpaRepository<Ride, Integer> {
 	public List<Ride> findByUserId(int id);
 
 	public List<Ride> findByUser_emailAddress(String name);
+	
+	List<Ride> findAllByOrderByIdAsc();
 
 	@Query("from Ride r where r.user is not empty and r.offeredBy=:email")
 	public List<Ride> getBookedRides(@Param("email") String email);
