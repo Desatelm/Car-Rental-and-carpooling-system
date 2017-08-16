@@ -16,7 +16,7 @@ import edu.mum.cs.projects.carpooling.service.RideService;
 import edu.mum.cs.projects.carpooling.service.UserService;
 
 @Controller
-@RequestMapping("ride")
+@RequestMapping("feedback")
 public class FeedBackController {
 
 	@Autowired
@@ -28,16 +28,16 @@ public class FeedBackController {
 	FeedBackService feedBackService;
 
 	@PostMapping(value = "/comment")
-	public String showFeedback(FeedBack feedBack, Model model, @RequestParam String email, @RequestParam Integer id) {
-		FeedBack feed = new FeedBack();
-		feed = feedBack;
+	public String showFeedback(FeedBack feed, Model model, @RequestParam String email, @RequestParam Integer id) {
+		/*FeedBack feed = new FeedBack();
+		feed = feedBack;*/
 		// feedBack.setDate(new Date());
 		User user = userService.getUserByemail(email);
 		Ride ride = rideService.getRideById(id);
 		feed.setRide(ride);
 		feed.setUser(user);
 		feedBackService.createFeedBacks(feed);
-		return "RidePostRegistration";
+		return "redirect:/welcome";
 	}
 	
 	@PostMapping(value = "/comment/delete/{id}")
@@ -48,6 +48,6 @@ public class FeedBackController {
 		ride.getFeedbacks().remove(feedback);
 		feedBackService.removeFeedBack(feedback);
 
-		return "RidePostRegistration";
+		return "redirect:/welcome";
 	}
 }

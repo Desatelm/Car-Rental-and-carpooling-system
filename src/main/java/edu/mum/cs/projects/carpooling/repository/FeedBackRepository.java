@@ -16,7 +16,7 @@ public interface FeedBackRepository extends JpaRepository<FeedBack, Integer> {
 	
 	List<FeedBack> findByUser(User user);
 	
-	List<FeedBack> findByRide(Ride ride);
+//	List<FeedBack> findByRide(Ride ride);
 
 }
 

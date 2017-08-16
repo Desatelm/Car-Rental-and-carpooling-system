@@ -30,8 +30,8 @@ public class WelcomeController {
 	@RequestMapping("/welcome")
 	public String dashboard(Model model, HttpSession session) {
 
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
+		User user1 = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userService.getUserByID(user1.getId());
 		RestTemplate restTemp = new RestTemplate();
 		session.setAttribute("username", user.getLastName());
 		session.setAttribute("email", user.getEmailAddress());

@@ -36,8 +36,8 @@ public class FeedBackService {
 		return feedBackRepository.findByUser(user);
 	}
 
-	public List<FeedBack> getFeedbackByRide(Ride ride) {
+	/*public List<FeedBack> getFeedbackByRide(Ride ride) {
 		return feedBackRepository.findByRide(ride);
-	}
+	}*/
 
 }

@@ -94,20 +94,13 @@ public class RideController {
 		return "redirect:/welcome";
 	}
 
-	@GetMapping("/offered")
+	@GetMapping("/myRides")
 	public String offeredRides(Model model) {
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		List<Ride> rides = rideService.getRideByEmail(user.getEmailAddress());
 		model.addAttribute("rides", rides);
 
 		return "offeredride";
-	}
-
-	@GetMapping("/booked")
-	public String bookedRides(Model model) {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();		
-		model.addAttribute("rides", user.getRide());
-		return "offeredride";
-	}
+	}	
 
 }

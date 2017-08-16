@@ -126,7 +126,7 @@
 							</li>
 						</ul>
 						<div>													
-							<form method="post" action="comment">
+							<form method="post" action="feedback/comment">
 								<input class="form-control input-sm" type ="search" name="comment"
 									placeholder="write comment here ...."></input>								
 									<input class="form-control" name="email" type="hidden"
@@ -146,17 +146,16 @@
 										</c:set>
 										<c:set var="y" value="${com.user.id}">
 										</c:set>
-										${com.comment}
-									<form action="../comment/delete/${com.id}" method="post">
+										${com.user.name}| ${com.comment}
+										<div class= "pull-right">
+									<form action="feedback/comment/delete/${com.id}" method="post">
 										<c:if test="${x == y }">
-
 											<button type="submit" class="btn btn-danger"
 												class="btn btn-primary btn-sm">Delete</button>
-											<%-- <a class="btn btn-danger" href="../comment/delete/${com.id}">
-												<i class="icon-trash icon-white"></i> Delete
-											</a> --%>
+											
 										</c:if>
 									</form>
+									</div>
 									</div>
                               </c:forEach>
 									
