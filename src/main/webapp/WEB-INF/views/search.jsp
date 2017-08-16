@@ -59,7 +59,6 @@
 							<th>Departure</th>
 							<th>Destination</th>
 							<th>Price</th>
-							<th>Pick up at</th>
 							<th>Seat Available</th>
 							<th>Status</th>
 							<th>Vehicle</th>
@@ -71,7 +70,6 @@
 							<td>${departure }</td>
 							<td>${destination}</td>
 							<td>${ride.price }</td>
-							<td>${ride.pickUp }</td>
 							<td>${ride.noSeat }</td>
 							<td>${ride.status }</td>
 							<td>${ride.vehicle.model }</td>
@@ -80,7 +78,7 @@
 				</table>
 			</div>
 			
-			 //<button type="submit" class="btn btn-default">Apply For a Ride</button>
+			<!--  <button type="submit" class="btn btn-default">Apply For a Ride</button> -->
 		</div>
 	</div>
 </c:if>

@@ -27,13 +27,13 @@ public class NotificationService {
 		javaMailSender.send(mail);
 	}
 
-	public void sendNotificationNewMessage(User user) throws MailException {
+	public void sendNotificationNewMessage(User user, String msg) throws MailException {
 		// send email
 		SimpleMailMessage mail = new SimpleMailMessage();
 		mail.setTo(user.getEmailAddress());
 		mail.setFrom("2dbcarpoolingsystem@gmail.com");
 		mail.setSubject("Registration ");
-		mail.setText("You got an new message at 2dbcarPooling system");
+		mail.setText(msg);
 		javaMailSender.send(mail);
 	}
 

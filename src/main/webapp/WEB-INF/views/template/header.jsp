@@ -43,7 +43,7 @@
                 <button type="submit" class="btn btn-success">Sign in</button>
             </form>
             <form action="/signup_page" class="navbar-form navbar-right">
-            <!-- <form action="/courseOffering/list" class="navbar-form navbar-right"> -->
+          
                 <button type="submit" class="btn btn-success">Sign up</button>
             </form>
         </div><!--/.navbar-collapse -->
