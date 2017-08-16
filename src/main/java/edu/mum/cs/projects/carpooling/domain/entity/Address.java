@@ -2,16 +2,22 @@ package edu.mum.cs.projects.carpooling.domain.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Embeddable
 public class Address {
 
 	@Column(name = "city")
+	@NotNull(message = "Required")
 	String city;
+	@NotNull(message = "Required")
 	String street;
+	@NotNull(message = "Required")
 	String state;
+	@NotNull(message = "Required")
 	String country;
-
+	@NotNull(message = "Required")
 	int zipcode;
 
 	public String getCity() {

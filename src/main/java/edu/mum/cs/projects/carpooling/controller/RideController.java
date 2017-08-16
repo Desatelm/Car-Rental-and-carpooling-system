@@ -50,7 +50,7 @@ public class RideController {
 
 	
 
-	@GetMapping(value = "/registration/{id}")
+	@GetMapping(value = "/registerform/{id}")
 	public String showPostRideForm(@PathVariable("id") Integer id, Model model) {
 
 		model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(id)));
@@ -59,7 +59,7 @@ public class RideController {
 		return "ride_registration";
 	}
 
-	@PostMapping(value = "/registration")
+	@PostMapping(value = "/registered")
 	public String processRide(@Valid @ModelAttribute ("ride")Ride ride, BindingResult bindingResult, @RequestParam String email,
 			@RequestParam int model, Model mod) {
 
@@ -104,10 +104,11 @@ public class RideController {
 
 		User user = userService.getUserByemail(email);
 		Ride ride = rideService.getRideById(postId);
-		user.setRide(ride);
+		Ride userRide =ride;
+		userRide.setNoSeat(seat);
+		user.setRide(userRide);
 		ride.setUser(user);
 		ride.setNoSeat(ride.getNoSeat() - seat);
-		
 		rideService.createRide(ride);
 		userService.createUser(user);
 		return "redirect:/welcome";

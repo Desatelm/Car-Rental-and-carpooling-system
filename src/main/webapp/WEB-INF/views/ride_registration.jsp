@@ -39,14 +39,14 @@
 						</div>
 						<div>
 							vehicle :(*)
-							<form:select path="model" class="form-control" id="cars">
+							<select name="model" class="form-control" id="cars">
 								<c:forEach var="car" items="${userVehicle }">
-									<form:option value="${car.id }"
+									<option value="${car.id }"
 										data-seats="${car.numberOfSeats}">${car.make},${car.model},
-										${car.type}</form:option>
+										${car.type}</option>
 								</c:forEach>
-							</form:select>
-							<form:errors path="model" cssClass="error"></form:errors>
+							</select>
+							<%-- <form:errors path="model" cssClass="error"></form:errors> --%>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">

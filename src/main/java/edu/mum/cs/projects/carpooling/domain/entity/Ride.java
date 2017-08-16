@@ -20,10 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "ride")
@@ -46,10 +44,8 @@ public class Ride {
 	String pickUp;
 
 	@NotNull(message="Required")
-	@DateTimeFormat(pattern="MM/dd/yyyy")
 	@Column(name = "departure_date")
-	@Temporal(TemporalType.DATE)
-	Date departureDate;
+	String departureDate;
 
 	@NotNull(message="Required")
 	@Column(name = "departure_time")
@@ -59,16 +55,13 @@ public class Ride {
 	String offeredBy;
 
 	@NotNull(message="Required")
-	//@Size(min=10,message="Price must be greater than $10")
+	@Min(value=10 ,message="Price must be greater than $10")
 	@Column(name = "price")
 	double price;
 
 	@NotNull(message="Required")
 	@Column(name = "seat_no")
 	int noSeat;
-	
-	@Transient
-	int model;
 
 	@Enumerated
 	RideStatus status;
@@ -134,11 +127,11 @@ public class Ride {
 		this.pickUp = pickUp;
 	}
 
-	public Date getDepartureDate() {
+	public String getDepartureDate() {
 		return departureDate;
 	}
 
-	public void setDepartureDate(Date departureDate) {
+	public void setDepartureDate(String departureDate) {
 		this.departureDate = departureDate;
 	}
 
@@ -205,6 +198,10 @@ public class Ride {
 	public void setFeedbacks(FeedBack feedbacks) {
 		this.feedbacks.add(feedbacks);
 	}
+	
+	public void setFeedbacks(List<FeedBack> feedbacks) {
+		this.feedbacks= feedbacks;
+	}
 
 	public List<User> getUser() {
 		return user;
@@ -213,13 +210,9 @@ public class Ride {
 	public void setUser(User user) {
 		this.user.add(user);
 	}
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
 	
-	public int getModel() {
-		return model;
-	}
-
-	public void setModel(int model) {
-		this.model = model;
-	}
 
 }
