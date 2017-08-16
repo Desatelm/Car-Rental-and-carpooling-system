@@ -64,8 +64,8 @@
 
 							</div>
 
-						</form> 
-						
+						</form>
+
 						<a href="/ride/myRides">My Booked Rides</a>
 					</li>
 				</sec:authorize>
@@ -80,7 +80,9 @@
 							<li><a href="#"></a></li>							
 							<li><a href="../car_registrationForm">AddCar</a></li>							
 							<li role="separator" class="divider"></li>
-							<li><a href="/ride/registerform/${id}">Post Ride</a></li>							
+
+							<li><a href="/ride/myRides">See My Ride Offers</a></li>
+
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/myRides">See My Ride Offers</a></li>
 
