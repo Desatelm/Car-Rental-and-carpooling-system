@@ -29,7 +29,7 @@ import edu.mum.cs.projects.carpooling.service.UserService;
 
 @Controller
 @Transactional
-@PreAuthorize("isAuthenticated()")
+//@PreAuthorize("isAuthenticated()")
 
 public class UserController {
 	@Autowired
@@ -43,6 +43,7 @@ public class UserController {
 
 	@GetMapping(value = "/signup_page")
 	public String adduser(Model model) {
+		System.err.println("**********************************************************signup page");
 		return "customer_registration";
 	}
 
@@ -56,7 +57,7 @@ public class UserController {
 		user.setRoles(role1);
 		userService.createUser(user);
 		try {
-			notificationService.sendNotification(user);
+			notificationService.sendNotificationNewMessage(user, "Thank you for joining to our CarPooling system");;
 		} catch (MailException e) {
 			System.err.println(e.getMessage());
 		}

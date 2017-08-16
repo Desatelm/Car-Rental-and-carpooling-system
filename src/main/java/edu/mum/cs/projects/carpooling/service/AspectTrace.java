@@ -25,7 +25,7 @@ public class AspectTrace {
 		User user = userService.getUserByID(msg.getReceiverId());
 
 		try {
-			notificationService.sendNotificationNewMessage(user);
+			notificationService.sendNotificationNewMessage(user,"You got an new message at 2dbcarPooling system");
 			
 		} catch (MailException e) {
 			System.err.println(e.getMessage());

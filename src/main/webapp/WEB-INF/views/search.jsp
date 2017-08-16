@@ -80,7 +80,7 @@
 				</table>
 			</div>
 			
-			 //<button type="submit" class="btn btn-default">Apply For a Ride</button>
+			
 		</div>
 	</div>
 </c:if>
