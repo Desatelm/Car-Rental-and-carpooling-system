@@ -42,7 +42,8 @@ public class SearchController {
 		try {
 			startDate = (Date) formatter.parse(date);
 		} catch (ParseException e) {
-			return "redirect:/search";
+			model.addAttribute("dateError","date format error");
+			return "redirect:/";
 		}
 
 		List<Ride> rides = rideservice.findByRideF(departure, destination, startDate, seat);

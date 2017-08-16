@@ -22,14 +22,14 @@
 <link href="<c:url value="/static/css/custom.css"/>" rel="stylesheet">
 <link href="<c:url value="/static/css/jumbotron.css"/>" rel="stylesheet">
 <link href="<c:url value="/static/css/panels.css"/>" rel="stylesheet">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="<c:url value="/static/js/user.js"/>"></script>
 
 <%-- <script src="<c:url value="/static/js/locationMap.js"/>"></script> --%>
 <script
 	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBI42L7mYrE1udMiU98gNXDX8Qv=3.exp&sensor=false&libraries=places"></script>
 	
-	<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 </head>
 
@@ -66,7 +66,7 @@
 
 						</form> 
 						
-						<a href="/ride/booked">My Booked Rides</a>
+						<a href="/ride/myRides">My Booked Rides</a>
 					</li>
 				</sec:authorize>
 			</ul>
@@ -82,11 +82,21 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/registerform/${id}">Post Ride</a></li>							
 							<li role="separator" class="divider"></li>
-							<li><a href="/ride/offered">See My Ride Offers</a></li>
-							<li role="separator" class="divider"></li>
-							<li><a href="/ride/booked">See Seats Booked</a></li>
-						</ul></li>						
-						
+							<li><a href="/ride/myRides">See My Ride Offers</a></li>
+
+						</ul>
+						<form action="../getProfile" method="post" class="form-horizontal">
+							<div class="form-group " class="col-xs-4"
+								style="margin-top: 25px; margin-left: 25px">
+								<input type="search" class="form-control input-sm" id="id"
+									name="username" placeholder="search user "> <span
+									style="margin-top: 25px; margin-left: 25px"
+									class="glyphicon glyphicon-search form-control-feedback"></span>
+
+							</div>
+						</form>
+						</li>
+
 				</sec:authorize>
 			</ul>
 			

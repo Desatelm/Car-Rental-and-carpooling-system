@@ -22,6 +22,11 @@
 			<td>${ride.noSeat }</td>
 			<td>${ride.status }</td>
 			<td>${ride.vehicle.model }</td>
+			<td>
+				<form action="/ride/cancel-booking/${ride.id}" method="post">
+					<input type="submit" value="Cancel"/>
+				</form>
+			</td>
 		</tr>
 	</c:forEach>
 </table>

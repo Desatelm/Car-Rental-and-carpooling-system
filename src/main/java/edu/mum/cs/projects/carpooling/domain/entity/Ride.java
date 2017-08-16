@@ -66,7 +66,7 @@ public class Ride {
 	@OneToMany(mappedBy = "ride", cascade = CascadeType.PERSIST)
 	List<FeedBack> feedbacks = new ArrayList<>();
 
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "user_ride", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "ride_id"))
 	List<User> user = new ArrayList<>();
 

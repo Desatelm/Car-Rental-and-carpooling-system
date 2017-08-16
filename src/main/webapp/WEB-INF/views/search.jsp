@@ -31,6 +31,7 @@
 					<input type="hidden" name="departure" value="${departure }">
 					<input type="hidden" name="destination" value="${destination }">
 					<div class="form-group">
+						<small>${dateError }</small>
 						<input id="datepick" name="date" placeholder="MM/DD/YYY"
 							type="text" value="${date }" class="form-control"
 							required="required" />
@@ -55,6 +56,8 @@
 					<thead>
 						<tr>
 							<th>Date</th>
+							<th>Departure</th>
+							<th>Destination</th>
 							<th>Price</th>
 							<th>Pick up at</th>
 							<th>Seat Available</th>
@@ -65,6 +68,8 @@
 					<c:forEach var="ride" items="${rides}">
 						<tr>
 							<td>${ride.departureDate }</td>
+							<td>${departure }</td>
+							<td>${destination}</td>
 							<td>${ride.price }</td>
 							<td>${ride.pickUp }</td>
 							<td>${ride.noSeat }</td>

@@ -21,7 +21,7 @@
 				<form method="post" action="../booked">
 					<select name= "seat">
 						<c:forEach var="i" begin="1" end="${ride.noSeat }">
-							<option value="${i }">I want to book ${i} seat</option>
+							<option value="${i}">I want to book ${i} seat</option>
 						</c:forEach>
 					</select> <input class="form-control" name="email" type="hidden"
 						value=${email} > <input class="form-control" name="postId"

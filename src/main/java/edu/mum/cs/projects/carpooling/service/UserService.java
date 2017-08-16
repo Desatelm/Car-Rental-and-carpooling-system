@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.mum.cs.projects.carpooling.domain.entity.CustomUserDetails;
+import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.repository.UsersRepository;
 
@@ -50,5 +51,4 @@ public class UserService {
 	public void deleteUser(User user) {
 		usersRepository.delete(user);
 	}
-
 }

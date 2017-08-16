@@ -59,11 +59,25 @@ public class RideService {
 	}
 
 	public List<Ride> getRideByEmail(String email) {
-		return rideRepository.findByUser_emailAddress(email);
+		return rideRepository.findDistinctByUser_emailAddress(email);
 	}
 
 	public List<Ride> getBookedRides(String email) {
 		return rideRepository.getBookedRides(email);
 	}
 	
+	public Ride findById(int id)
+	{
+		return rideRepository.findById(id);
+	}
+	
+	public void cancelRide(int userId, int rideId)
+	{
+		rideRepository.cancelRide(userId, rideId);
+	}
+	
+	public void removeRide( int rideId)
+	{
+		rideRepository.delete(rideId);;
+	}
 }

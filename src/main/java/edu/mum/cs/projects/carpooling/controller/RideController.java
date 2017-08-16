@@ -1,5 +1,6 @@
 package edu.mum.cs.projects.carpooling.controller;
 
+import java.util.ArrayList;
 //import java.util.ArrayList;
 import java.util.List;
 
@@ -36,33 +37,21 @@ public class RideController {
 	@Autowired
 	VehicleService vehicleService;
 
-	/*
-	 * public RideController() { //allRides = rideService.getAllRides(); }
-	 */
-
 	@GetMapping(value = "/registerform")
 	public String showPostRideFormAll(Model model) {
 		
 		model.addAttribute("allRides", rideService.getAllRides());
 		return "RidePostRegistration";
 	}
+
+
 	
-	/*@GetMapping(value = "/registerform") 
-	  public String get(Model model) {
-	  
-	  RestTemplate restTemp = new RestTemplate(); 
-	  List <Ride> rides = (List<Ride>) restTemp.getForObject("http://localhost:9090/Rest/rides", ArrayList.class); 
-	  model.addAttribute("allRides",rides); 
-	  return "RidePostRegistration";
-	  }*/
-	 
-	
+
 	@GetMapping(value = "/registerform/{id}")
 	public String showPostRideForm(@PathVariable("id") Integer id, Model model) {
 
-		System.err.println("*************************" + id);
-		System.err.println("*************************" +vehicleService.getVehicleByUser(userService.getUserByID(id)).size());
-		model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(id)));
+        model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(id)));
+
 		model.addAttribute("allRides", rideService.getAllRides());
 		return "RidePostRegistration";
 	}
@@ -72,8 +61,7 @@ public class RideController {
 
 		User user = userService.getUserByemail(email);
 		List<Vehicle> vehicles = user.getVehicles();
-		mod.addAttribute("allRides", rideService.getAllRides());
-		System.err.println("*************************" + model);
+		mod.addAttribute("allRides", rideService.getAllRides());		
 		for (Vehicle vehicle : vehicles) {
 			if (vehicle.getId() == model) {
 				ride.setVehicle(vehicle);
@@ -85,7 +73,7 @@ public class RideController {
 		user.setRide(ride);
 		userService.createUser(user);
 		rideService.createRide(ride);
-		return "RidePostRegistration";
+		return "redirect:/welcome";
 	}
 
 	@GetMapping(value = "/apply/{id}")
@@ -106,20 +94,23 @@ public class RideController {
 	}
 
 	@PostMapping(value = "/booked")
-	public String bookRide(@RequestParam String email, @RequestParam int postId) {
-		//, @RequestParam int seat
+	public String bookRide(@RequestParam String email, @RequestParam int postId, @RequestParam int seat) {
+		
 		User user = userService.getUserByemail(email);
 		Ride ride = rideService.getRideById(postId);
 		System.out.println("*******************" + user + "  and   " + ride);
 		user.setRide(ride);
+
+		ride.setUser(user);
 		//ride.setNoSeat(ride.getNoSeat() - seat);
+		
 		rideService.createRide(ride);
 		userService.createUser(user);
-		System.out.println("*******************");
-		return "redirect:/welcom";
+		return "redirect:/welcome";
+
 	}
 	
-	@GetMapping("/offered")
+	@GetMapping("/myRides")
 	public String offeredRides(Model model)
 	{
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -129,23 +120,34 @@ public class RideController {
 		return "offeredride";
 	}
 	
-	@GetMapping("/booked")
-	public String bookedRides(Model model)
+	@PostMapping("/cancel-booking/{id}")
+	public String cancelRides(@PathVariable("id") int id)
 	{
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		//List<Ride> rides = rideService.getBookedRides(user.getEmailAddress());
-		model.addAttribute("rides", user.getRide());		
-		return "offeredride";
+		User user2 = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		User user = userService.getUserByemail(user2.getEmailAddress());
+		System.out.println(user.getId() +"***********************************"+ id);
+		List<Ride> rides = rideService.getRideByEmail(user.getEmailAddress());
+		List<Ride> ridess = new ArrayList<>();
+		List<User> users = rideService.getRideById(id).getUser();
+		List<User> userss = new ArrayList<>();
+		for(Ride ride: rides) {
+			if(!(id ==ride.getId())) {
+				ridess.add(ride);
+			}
+		}
+		for(User user1: userss) {
+			if(!(user.equals(user1))) {
+				userss.add(user1);
+			}
+		}
+		user.setRides(ridess);
+		Ride ridetemp = rideService.getRideById(id);
+		ridetemp.setUser(user);
+		rideService.createRide(ridetemp);
+		
+		userService.createUser(user);
+		//rideService.cancelRide(user.getId(), id);
+		return "redirect:/ride/myRides";
 	}
-	
-//	@GetMapping("/rider/booked")
-//	public String myBookedRides(Model model)
-//	{
-//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-//		List<Ride> rides = user.getRide();
-//		System.out.println(rides.size);
-//		model.addAttribute("rides", rides);		
-//		return "offeredride";
-//	}
 
 }
