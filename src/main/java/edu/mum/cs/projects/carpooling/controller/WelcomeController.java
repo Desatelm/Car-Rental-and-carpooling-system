@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.client.RestTemplate;
 
+import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
 import edu.mum.cs.projects.carpooling.service.UserService;
 import edu.mum.cs.projects.carpooling.service.VehicleService;
@@ -41,6 +42,7 @@ public class WelcomeController {
 		model.addAttribute("vehicle", user.getVehicles());
 		session.setAttribute("myRidePost", user.getRide());
 		model.addAttribute("userVehicle", vehicleService.getVehicleByUser(userService.getUserByID(user.getId())));
+		model.addAttribute("ride",new Ride());
 		return "welcome";
 	}
 }

@@ -3,53 +3,72 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-4">
-			<form method="post" action="../registed">
+			<form:form method="post" action="../registration"
+				modelAttribute="ride">
 				<fieldset>
 					<div class="form-row">
 						<div>
-							Departure : <input class="placepicker form-control" type="text"
-								id="departure" name="departure" placeholder="Departure location" />
+							Departure :(*)
+							<form:input class="placepicker form-control" type="text"
+								id="departure" path="departure" placeholder="Departure location" />
+							<form:errors path="departure" cssClass="error"></form:errors>
 
 						</div>
 						<div>
-							Destination: <input type="text" class="placepicker form-control"
-								id="destination" name="destination"
+							Destination :(*)
+							<form:input type="text" class="placepicker form-control"
+								id="destination" path="destination"
 								placeholder="Destination location" />
+							<form:errors path="destination" cssClass="error"></form:errors>
 
 						</div>
 
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								Departure Date : <input class="form-control"
-									name="registration_date" id="registration-date"
-									name="departureDate" type="date" />
+								Departure Date :(*)
+								<form:input class="form-control" id="registration-date"
+									path="departureDate" type="date" />
+								<form:errors path="departureDate" cssClass="error"></form:errors>
 							</div>
 							<div class="form-group col-md-6">
-								Departure Time : <input class="form-control"
-									id="registration-time" name="departureTime" type="time" />
+								Departure Time :(*)
+								<form:input class="form-control" id="registration-time"
+									path="departureTime" type="time" />
+								<form:errors path="departureTime" cssClass="error"></form:errors>
 							</div>
 						</div>
 						<div>
-							vehicle:<select name="model" class="form-control" id="cars">
-								<!-- <option>bla</option> -->
+							vehicle :(*)
+							<select name="model" class="form-control" id="cars">
 								<c:forEach var="car" items="${userVehicle }">
-									<option value="${car.id }" data-seats="${car.numberOfSeats}">${car.make},${car.model},
+									<option value="${car.id }"
+										data-seats="${car.numberOfSeats}">${car.make},${car.model},
 										${car.type}</option>
 								</c:forEach>
 							</select>
+							<%-- <form:errors path="model" cssClass="error"></form:errors> --%>
 						</div>
 						<div class="form-row">
 							<div class="form-group col-md-6">
-								Number of Seats: <select class="form-control" name="noSeat"
-									id="noOfSeats"></select>
+								Number of Seats :(*)
+								<form:select class="form-control" path="noSeat" id="noOfSeats"></form:select>
+								<form:errors path="noSeat" cssClass="error"></form:errors>
 							</div>
 							<div class="form-group col-md-6">
-								Price: <input type="number" class="form-control" name="price" />
+								Price :(*)
+								<form:input type="number" class="form-control" path="price" />
+								<form:errors path="price" cssClass="error"></form:errors>
 							</div>
 						</div>
 
 						<div>
-							Waiting Time <input class="form-control" name="waitingTime" />
+							Waiting Time :(*)
+							<form:select path="waitingTime" class="form-control" id="cars">
+								<form:option value="10">10 minutes</form:option>
+								<form:option value="10">20 minutes</form:option>
+								<form:option value="10">30 minutes</form:option>
+							</form:select>
+							<form:errors path="waitingTime" cssClass="error"></form:errors>
 						</div>
 						<div>
 							<input class="form-control" name="email" type="hidden"
@@ -60,7 +79,7 @@
 
 					</div>
 				</fieldset>
-			</form>
+			</form:form>
 		</div>
 		<div class="col-sm-8">
 			<div>
@@ -135,10 +154,12 @@
 
 		$(document).ready(function() {
 			$('#cars').on('change', function() {
+
 				let seats = $(this).val();
+				let option = "";
 				for (let i = 0; i < seats; i++) {
-					let option = $('<option>', {
-						'text' : i + 1 ,
+					option = $('<option>', {
+						'text' : i + 1,
 						'value' : i + 1
 					});
 					$('#noOfSeats').append(option);

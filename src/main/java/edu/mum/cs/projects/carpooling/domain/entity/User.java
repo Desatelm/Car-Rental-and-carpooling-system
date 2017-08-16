@@ -22,9 +22,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import org.hibernate.validator.constraints.Email;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;;
 
@@ -36,6 +41,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "user_id")
 	private int id;
+
 	@Column(name = "name", unique = true)
 	private String name;
 
@@ -47,13 +53,13 @@ public class User {
 
 	@Column(name = "last_name")
 	private String lastName;
-
+	
 	@Column(name = "sex")
 	private String sex;
 
 	@Column(name = "active")
 	private int active;
-
+	
 	@Column(name = "phone_no", unique = true)
 	private String phone;
 
