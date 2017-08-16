@@ -106,13 +106,13 @@ public class RideController {
 	}
 
 	@PostMapping(value = "/booked")
-	public String bookRide(@RequestParam String email, @RequestParam int postId, @RequestParam int seat) {
-
+	public String bookRide(@RequestParam String email, @RequestParam int postId) {
+		//, @RequestParam int seat
 		User user = userService.getUserByemail(email);
 		Ride ride = rideService.getRideById(postId);
 		System.out.println("*******************" + user + "  and   " + ride);
 		user.setRide(ride);
-		ride.setNoSeat(ride.getNoSeat() - seat);
+		//ride.setNoSeat(ride.getNoSeat() - seat);
 		rideService.createRide(ride);
 		userService.createUser(user);
 		System.out.println("*******************");
@@ -129,13 +129,23 @@ public class RideController {
 		return "offeredride";
 	}
 	
-	@GetMapping("/booked/{id}")
-	public String bookedRides(@PathVariable("id") Integer id,Model model)
+	@GetMapping("/booked")
+	public String bookedRides(Model model)
 	{
 		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		List<Ride> rides = rideService.getBookedRides(user.getEmailAddress());
-		model.addAttribute("rides", rides);		
+		//List<Ride> rides = rideService.getBookedRides(user.getEmailAddress());
+		model.addAttribute("rides", user.getRide());		
 		return "offeredride";
 	}
+	
+//	@GetMapping("/rider/booked")
+//	public String myBookedRides(Model model)
+//	{
+//		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//		List<Ride> rides = user.getRide();
+//		System.out.println(rides.size);
+//		model.addAttribute("rides", rides);		
+//		return "offeredride";
+//	}
 
 }

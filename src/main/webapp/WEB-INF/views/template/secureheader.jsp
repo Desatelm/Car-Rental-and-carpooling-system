@@ -84,7 +84,7 @@
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/offered">See My Ride Offers</a></li>
 							<li role="separator" class="divider"></li>
-							<li><a href="/ride/booked/${id}">See Seats Booked</a></li>
+							<li><a href="/ride/booked">See Seats Booked</a></li>
 						</ul></li>						
 						
 				</sec:authorize>
