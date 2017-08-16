@@ -100,7 +100,7 @@
 										</c:if>
 									</form>
 
-									</p>
+									
 								</div>
 							</c:forEach>
 							<form method="post" action="../comment">

@@ -6,7 +6,6 @@
 	<div class="">
 
 		<h3>Welcome ${lastName} !!!</h3>
-		<div class="col-sm-3">.col-sm-3</div>
           
 		<div class="row" style="padding-top: 20px;">
 		    <div class=" col-md-4">
@@ -50,7 +49,7 @@
 			
 			<div  style="background: rgba(0, 0, 0, 0.3);  border-radius: 5px; margin-top: 20px;">
 				<h2>POST OFFERS</h2>
-				<form method="post" action="../registed">
+				<form method="post" action="ride/registed">
 				<fieldset>
 					<div class="form-row">
 						<div>
@@ -127,7 +126,7 @@
 							</li>
 						</ul>
 						<div>													
-							<form method="post" action="../comment">
+							<form method="post" action="comment">
 								<input class="form-control input-sm" type ="search" name="comment"
 									placeholder="write comment here ...."></input>								
 									<input class="form-control" name="email" type="hidden"
@@ -139,6 +138,29 @@
 							</form>
 							
 						</div>
+						<div>
+							<c:forEach var="com" items="${post.feedbacks}">
+								<div>
+									<p>
+										<c:set var="x" value="${id}">
+										</c:set>
+										<c:set var="y" value="${com.user.id}">
+										</c:set>
+										${com.comment}
+									<form action="../comment/delete/${com.id}" method="post">
+										<c:if test="${x == y }">
+
+											<button type="submit" class="btn btn-danger"
+												class="btn btn-primary btn-sm">Delete</button>
+											<%-- <a class="btn btn-danger" href="../comment/delete/${com.id}">
+												<i class="icon-trash icon-white"></i> Delete
+											</a> --%>
+										</c:if>
+									</form>
+									</div>
+                              </c:forEach>
+									
+								</div>
 						<hr>
 					</div>
 					</div>

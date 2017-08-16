@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
 import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.RideStatus;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
@@ -33,10 +32,6 @@ public class RideController {
 	@Autowired
 	VehicleService vehicleService;
 
-	/*
-	 * public RideController() { //allRides = rideService.getAllRides(); }
-	 */
-
 	@GetMapping(value = "/registerform")
 	public String showPostRideFormAll(Model model) {
 
@@ -44,14 +39,7 @@ public class RideController {
 		return "RidePostRegistration";
 	}
 
-	/*
-	 * @GetMapping(value = "/registerform") public String get(Model model) {
-	 * 
-	 * RestTemplate restTemp = new RestTemplate(); List <Ride> rides =
-	 * (List<Ride>) restTemp.getForObject("http://localhost:9090/Rest/rides",
-	 * ArrayList.class); model.addAttribute("allRides",rides); return
-	 * "RidePostRegistration"; }
-	 */
+	
 
 	@GetMapping(value = "/registerform/{id}")
 	public String showPostRideForm(@PathVariable("id") Integer id, Model model) {
@@ -66,8 +54,7 @@ public class RideController {
 
 		User user = userService.getUserByemail(email);
 		List<Vehicle> vehicles = user.getVehicles();
-		mod.addAttribute("allRides", rideService.getAllRides());
-		System.err.println("*************************" + model);
+		mod.addAttribute("allRides", rideService.getAllRides());		
 		for (Vehicle vehicle : vehicles) {
 			if (vehicle.getId() == model) {
 				ride.setVehicle(vehicle);
@@ -79,7 +66,7 @@ public class RideController {
 		user.setRide(ride);
 		userService.createUser(user);
 		rideService.createRide(ride);
-		return "RidePostRegistration";
+		return "redirect:/welcome";
 	}
 
 	@GetMapping(value = "/apply/{id}")
@@ -101,9 +88,10 @@ public class RideController {
 		user.setRide(ride);
 		ride.setUser(user);
 		ride.setNoSeat(ride.getNoSeat() - seat);
+		
 		rideService.createRide(ride);
 		userService.createUser(user);
-		return "redirect:/ride/registerform";
+		return "redirect:/welcome";
 	}
 
 	@GetMapping("/offered")

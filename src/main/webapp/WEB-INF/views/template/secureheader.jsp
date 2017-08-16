@@ -82,7 +82,18 @@
 							<li><a href="/ride/offered">See My Ride Offers</a></li>
 							<li role="separator" class="divider"></li>
 							<li><a href="/ride/booked">See Seats Booked</a></li>
-						</ul></li>
+						</ul>
+						<form action="../getProfile" method="post" class="form-horizontal">
+							<div class="form-group " class="col-xs-4"
+								style="margin-top: 25px; margin-left: 25px">
+								<input type="search" class="form-control input-sm" id="id"
+									name="username" placeholder="search user "> <span
+									style="margin-top: 25px; margin-left: 25px"
+									class="glyphicon glyphicon-search form-control-feedback"></span>
+
+							</div>
+						</form>
+						</li>
 				</sec:authorize>
 			</ul>
 			
