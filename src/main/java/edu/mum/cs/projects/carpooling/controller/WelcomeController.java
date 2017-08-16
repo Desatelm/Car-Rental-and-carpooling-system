@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
@@ -19,6 +20,8 @@ import edu.mum.cs.projects.carpooling.service.VehicleService;
 
 @Controller
 @Transactional(propagation = Propagation.REQUIRES_NEW)
+@PreAuthorize("isAuthenticated()")
+
 public class WelcomeController {
     
 	@Autowired
@@ -34,6 +37,7 @@ public class WelcomeController {
         User user = userService.getUserByID(user1.getId());
 		RestTemplate restTemp = new RestTemplate();
 		session.setAttribute("username", user.getLastName());
+		session.setAttribute("Principal", user);
 		session.setAttribute("email", user.getEmailAddress());
 		session.setAttribute("myRidePost", user.getRide());
 		model.addAttribute("allRides", restTemp.getForObject("http://localhost:9090/Rest/rides", ArrayList.class));

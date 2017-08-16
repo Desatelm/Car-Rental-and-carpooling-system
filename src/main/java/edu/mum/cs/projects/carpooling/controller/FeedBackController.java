@@ -1,6 +1,7 @@
 package edu.mum.cs.projects.carpooling.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import edu.mum.cs.projects.carpooling.service.UserService;
 
 @Controller
 @RequestMapping("feedback")
+@PreAuthorize("isAuthenticated()")
 public class FeedBackController {
 
 	@Autowired

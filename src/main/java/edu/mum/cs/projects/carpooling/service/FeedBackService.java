@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mum.cs.projects.carpooling.domain.entity.FeedBack;
-import edu.mum.cs.projects.carpooling.domain.entity.Ride;
 import edu.mum.cs.projects.carpooling.domain.entity.User;
-import edu.mum.cs.projects.carpooling.domain.entity.Vehicle;
 import edu.mum.cs.projects.carpooling.repository.FeedBackRepository;
 
 @Service

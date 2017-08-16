@@ -3,6 +3,7 @@ package edu.mum.cs.projects.carpooling.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
@@ -19,6 +20,8 @@ import edu.mum.cs.projects.carpooling.service.VehicleService;
 
 @Controller
 @Transactional
+@PreAuthorize("isAuthenticated()")
+
 public class VehicleController {
 
 	@Autowired

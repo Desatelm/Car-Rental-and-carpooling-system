@@ -3,6 +3,7 @@ package edu.mum.cs.projects.carpooling.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +23,8 @@ import edu.mum.cs.projects.carpooling.service.VehicleService;
 
 @Controller
 @RequestMapping("ride")
+@PreAuthorize("isAuthenticated()")
+
 public class RideController {
 
 	@Autowired
@@ -49,7 +52,7 @@ public class RideController {
 		return "RidePostRegistration";
 	}
 
-	@PostMapping(value = "/registed")
+	@PostMapping(value = "/registered")
 	public String processRide(Ride ride, @RequestParam String email, @RequestParam int model, Model mod) {
 
 		User user = userService.getUserByemail(email);

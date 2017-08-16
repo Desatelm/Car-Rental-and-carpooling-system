@@ -9,7 +9,7 @@
 			style="background: rgba(0, 0, 0, 0.3); color: white; border-radius: 5px;">
             	<h1 class="text-center login-title" style="color: white;" >Sign in to continue to carpooling</h1>
             	<br/>
-                <img class="profile-img" src="/static/fire.png?sz=120"
+                <img class="profile-img" src="/static/carpool2.jpg?sz=120"
                      alt="">
                 <form id="login-form" action="<c:url value="/login" />" method="post" class="form-signin">
                 	
@@ -21,7 +21,6 @@
                            value='<c:if test="${not empty param.login_error}"><c:out value="${SPRING_SECURITY_LAST_USERNAME}"/></c:if>'>
                     <br>
                     <input name="password" type="password" class="form-control" placeholder="Password" required>
-                    <%--<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>--%>
                     <input class="btn btn-primary" type="submit" name="yt0" value="Login">
                     <input class="btn btn-danger btnClear" name="yt1" type="button" value="Clear" onclick="$('#login-form').trigger('reset');">
 

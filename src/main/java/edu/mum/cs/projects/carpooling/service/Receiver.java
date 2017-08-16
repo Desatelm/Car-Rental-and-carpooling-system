@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.mail.MailException;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Propagation;
@@ -38,12 +37,6 @@ public class Receiver {
 		user.setMessageBox(messages);
 		userService.createUser(user);
 
-		try {
-			notificationService.sendNotificationNewMessage(user);
-			;
-		} catch (MailException e) {
-			System.err.println(e.getMessage());
-		}
 		System.out.println("Received <" + msg + ">");
 	}
 
